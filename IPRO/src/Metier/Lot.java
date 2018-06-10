@@ -1,3 +1,6 @@
+package Metier;
+
+import Metier.Sellable;
 
 import java.util.*;
 
@@ -46,12 +49,6 @@ public class Lot implements Sellable {
      * 
      */
     public Article Articles;
-
-    /**
-     * 
-     */
-    public Article Articles;
-
 
     /**
      * 

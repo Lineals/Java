@@ -1,3 +1,4 @@
+package Metier;
 
 import java.util.*;
 
@@ -15,6 +16,6 @@ public class Stock {
     /**
      * 
      */
-    public Hashmap<Article,Integer> stock;
+    public HashMap<Article,Integer> stock;
 
 }

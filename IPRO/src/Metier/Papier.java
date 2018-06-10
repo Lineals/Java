@@ -1,3 +1,6 @@
+package Metier;
+
+import Metier.Article;
 
 import java.util.*;
 
@@ -15,7 +18,7 @@ public class Papier extends Article {
     /**
      * 
      */
-    private void poids;
+    private Double poids;
 
     /**
      * 

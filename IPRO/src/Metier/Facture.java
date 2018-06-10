@@ -1,5 +1,9 @@
+package Metier;
+
+import javafx.util.Pair;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * 
@@ -30,7 +34,7 @@ public class Facture {
     /**
      * 
      */
-    private Pair<double,double>[] prix;
+    private Pair<Double,Double>[] prix;
 
     /**
      * 

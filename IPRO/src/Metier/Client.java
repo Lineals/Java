@@ -1,5 +1,8 @@
+package Metier;
 
 import java.util.*;
+import Controleur.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * 
@@ -40,12 +43,7 @@ public class Client {
     /**
      * 
      */
-    private Set<Commandes> commandes;
-
-    /**
-     * 
-     */
-    public Set<Commande> Commande;
+    private ArrayList<Commande> commandes;
 
     /**
      * 

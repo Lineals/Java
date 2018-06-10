@@ -1,5 +1,8 @@
+package Metier;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
+import Controleur.*;
 
 /**
  * 
@@ -25,12 +28,12 @@ public class Commande {
     /**
      * 
      */
-    private DateTime date;
+    private Date date;
 
     /**
      * 
      */
-    private Set<Ligne> articles;
+    private ArrayList<Ligne> articles;
 
     /**
      * 

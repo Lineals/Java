@@ -1,5 +1,9 @@
+package Metier;
+
+import Metier.Sellable;
 
 import java.util.*;
+import Controleur.*;
 
 /**
  * 
@@ -45,7 +49,7 @@ public abstract class Article implements Sellable {
     /**
      * 
      */
-    public Boutique 1;
+    public Boutique boutique;
 
     /**
      * 
