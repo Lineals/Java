@@ -7,14 +7,12 @@ import java.util.*;
  */
 public interface Sellable {
 
-    /**
-     * 
-     */
-    public void getReference();
+    double getPrice();
 
-    /**
-     * @param ref
-     */
-    public void setReference(String ref);
+    String getRef();
+
+    String getName();
+
+    String getBrand();
 
 }

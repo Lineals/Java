@@ -16,12 +16,26 @@ public class Ligne {
     /**
      * 
      */
-    public Integer quantite;
+    private Integer quantite;
 
     /**
      * 
      */
     private double prix;
 
+    public Integer getQuantite() {
+        return quantite;
+    }
 
+    public void setQuantite(Integer quantite) {
+        this.quantite = quantite;
+    }
+
+    public double getPrix() {
+        return prix;
+    }
+
+    public void setPrix(double prix) {
+        this.prix = prix;
+    }
 }

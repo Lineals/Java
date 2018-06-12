@@ -11,12 +11,6 @@ import Controleur.*;
 public abstract class Article implements Sellable {
 
     /**
-     * Default constructor
-     */
-    public Article() {
-    }
-
-    /**
      * Code de référence de l'article
      */
     private String reference;
@@ -52,15 +46,20 @@ public abstract class Article implements Sellable {
     /**
      * Constructeur par défaut de l'article
      */
-    public void Article() {
-        // TODO implement here
+    public void Article(String nom, String marque, String reference, Double coutObtention, Double prix) {
+        this.boutique=Controleur.Boutique.getInstance();
+        this.coutObtention=coutObtention;
+        this.marque=marque;
+        this.nom=nom;
+        this.reference=reference;
+        this.prix=prix;
     }
 
     /**
      * Renvoi la référence de l'article
      */
-    public void getReference() {
-        // TODO implement here
+    public String getReference() {
+        return this.reference;
     }
 
     /**
@@ -68,7 +67,7 @@ public abstract class Article implements Sellable {
      * @param ref
      */
     public void setReference(String ref) {
-        // TODO implement here
+        this.reference=ref;
     }
     /**
      * Renvoi le nom de l'article
@@ -115,5 +114,25 @@ public abstract class Article implements Sellable {
      */
     public void setCoutObtention(double coutObtention) {
         this.coutObtention = coutObtention;
+    }
+
+    @Override
+    public double getPrice() {
+        return prix;
+    }
+
+    @Override
+    public String getRef() {
+        return reference;
+    }
+
+    @Override
+    public String getName() {
+        return nom;
+    }
+
+    @Override
+    public String getBrand() {
+        return marque;
     }
 }

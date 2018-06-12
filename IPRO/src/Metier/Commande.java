@@ -1,5 +1,6 @@
 package Metier;
 
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import Controleur.*;
@@ -9,26 +10,21 @@ import Controleur.*;
  */
 public class Commande {
 
-    /**
-     * Default constructor
-     */
-    public Commande() {
-    }
 
     /**
      * 
      */
-    public static AtomicInteger count;
+    public static final AtomicInteger count= new AtomicInteger(0);
 
     /**
      * 
      */
-    private Integer id;
+    private final Integer id;
 
     /**
      * 
      */
-    private Date date;
+    private final LocalDateTime date;
 
     /**
      * 
@@ -65,6 +61,17 @@ public class Commande {
      */
     public Client Client;
 
+    public Commande(ArrayList<Ligne> articles, double tauxReduc, Client client) {
+        this.id = count.getAndIncrement();
+        this.date = LocalDateTime.now();
+        this.articles = articles;
+        this.tauxReduc = tauxReduc;
+        this.fraisDePort = 0;
+        this.prixTotal = 0;
+        this.estFinalisee = false;
+        this.Boutique= Controleur.Boutique.getInstance();
+        this.Client=client;
+    }
 
     /**
      * @return
@@ -74,4 +81,47 @@ public class Commande {
         return 0.0d;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public LocalDateTime getDate() {
+        return date;
+    }
+
+    public ArrayList<Ligne> getArticles() {
+        return articles;
+    }
+
+    public void setArticles(ArrayList<Ligne> articles) {
+        this.articles = articles;
+    }
+
+    public double getTauxReduc() {
+        return tauxReduc;
+    }
+
+    public void setTauxReduc(double tauxReduc) {
+        this.tauxReduc = tauxReduc;
+    }
+
+    public double getFraisDePort() {
+        return fraisDePort;
+    }
+
+    public double getPrixTotal() {
+        int prixT=0;
+        for (Ligne art: articles) {
+            prixT+=art.getPrix();
+        }
+        return prixT-(prixT*tauxReduc)+getFraisDePort();
+    }
+
+    public Boolean getEstFinalisee() {
+        return estFinalisee;
+    }
+
+    public void setEstFinalisee(Boolean estFinalisee) {
+        this.estFinalisee = estFinalisee;
+    }
 }

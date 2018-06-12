@@ -11,12 +11,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class Facture {
 
     /**
-     * Default constructor
-     */
-    public Facture() {
-    }
-
-    /**
      * 
      */
     private static AtomicInteger count;

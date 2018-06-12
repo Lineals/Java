@@ -10,65 +10,112 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class Client {
 
     /**
-     * Default constructor
+     * Auto increment pour générer un id unique a chaque client
      */
-    public Client() {
-    }
+    public static AtomicInteger count = new AtomicInteger(0);
 
     /**
-     * 
-     */
-    public static AtomicInteger count;
-
-    /**
-     * 
+     * Id du Client
      */
     private Integer id;
 
     /**
-     * 
+     * Nom du client
      */
     private String nom;
 
     /**
-     * 
+     * Prenom du client
      */
     private String prenom;
 
     /**
-     * 
+     * Adresse du client
      */
     private String adresse;
 
     /**
-     * 
+     * Liste des commandes passés par le client
      */
     private ArrayList<Commande> commandes;
+    /**
+     * Liste des factures du client client
+     */
+    private ArrayList<Facture> factures;
 
     /**
-     * 
+     * La boutique
      */
     public Boutique Boutique;
 
-
     /**
-     * 
+     * Default constructor
      */
-    public void Client() {
-        // TODO implement here
+    public Client(String nom, String prenom,String adresse) {
+        this.id = count.getAndIncrement();
+        this.nom=nom;
+        this.prenom=prenom;
+        this.adresse=adresse;
+        this.Boutique= Controleur.Boutique.getInstance();
+        this.commandes= new ArrayList<>();
+        this.factures= new ArrayList<>();
     }
 
-    /**
-     * 
-     */
-    public class Class1 {
-
-        /**
-         * Default constructor
-         */
-        public Class1() {
-        }
-
+    public Integer getId() {
+        return id;
     }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
+
+    public ArrayList<Commande> getCommandes() {
+        return commandes;
+    }
+
+    public void setCommandes(ArrayList<Commande> commandes) {
+        this.commandes = commandes;
+    }
+
+    public ArrayList<Facture> getFactures() {
+        return factures;
+    }
+
+    public void setFactures(ArrayList<Facture> factures) {
+        this.factures = factures;
+    }
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "id=" + id +
+                ", nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", adresse='" + adresse + '\'' +
+                '}';
+    }
 }

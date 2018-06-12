@@ -74,17 +74,36 @@ public class Lot implements Sellable {
     }
 
     /**
-     * 
+     *
      */
-    public void getReference() {
-        // TODO implement here
+    public String getReference() {
+        return reference;
     }
 
     /**
      * @param ref
      */
     public void setReference(String ref) {
-        // TODO implement here
+        reference=ref;
     }
 
+    @Override
+    public double getPrice() {
+        return prix;
+    }
+
+    @Override
+    public String getRef() {
+        return reference;
+    }
+
+    @Override
+    public String getName() {
+        return nom;
+    }
+
+    @Override
+    public String getBrand() {
+        return null;
+    }
 }
