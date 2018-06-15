@@ -12,19 +12,18 @@ public class Papier extends Article {
     /**
      * Default constructor
      */
-    public Papier() {
+    public Papier(String nom, String marque, String reference, double coutObtention, double prix, double poids) {
+    	super(nom, marque, reference, coutObtention, prix);
+    	this.poids = poids;
     }
 
     /**
      * 
      */
     private Double poids;
-
-    /**
-     * 
-     */
-    public void Papier() {
-        // TODO implement here
-    }
+    
+    public double getPoids() {
+		return this.poids;
+	}
 
 }

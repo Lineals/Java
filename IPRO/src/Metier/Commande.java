@@ -29,7 +29,7 @@ public class Commande {
     /**
      * 
      */
-    private ArrayList<Ligne> articles;
+    private ArrayList<Ligne> lignes;
 
     /**
      * 
@@ -61,15 +61,15 @@ public class Commande {
      */
     public Client Client;
 
-    public Commande(ArrayList<Ligne> articles, double tauxReduc, Client client) {
+    public Commande(Client client) {
         this.id = count.getAndIncrement();
         this.date = LocalDateTime.now();
-        this.articles = articles;
-        this.tauxReduc = tauxReduc;
+        this.lignes = new ArrayList<Ligne>();
+        this.tauxReduc = 0;
         this.fraisDePort = 0;
         this.prixTotal = 0;
         this.estFinalisee = false;
-        this.Boutique= Controleur.Boutique.getInstance();
+        this.Boutique= Boutique.getInstance();
         this.Client=client;
     }
 
@@ -90,11 +90,11 @@ public class Commande {
     }
 
     public ArrayList<Ligne> getArticles() {
-        return articles;
+        return lignes;
     }
 
-    public void setArticles(ArrayList<Ligne> articles) {
-        this.articles = articles;
+    public void setArticles(ArrayList<Ligne> lignes) {
+        this.lignes = lignes;
     }
 
     public double getTauxReduc() {
@@ -111,7 +111,7 @@ public class Commande {
 
     public double getPrixTotal() {
         int prixT=0;
-        for (Ligne art: articles) {
+        for (Ligne art: lignes) {
             prixT+=art.getPrix();
         }
         return prixT-(prixT*tauxReduc)+getFraisDePort();
@@ -123,5 +123,44 @@ public class Commande {
 
     public void setEstFinalisee(Boolean estFinalisee) {
         this.estFinalisee = estFinalisee;
+    }
+    
+    public void addSellable(Sellable sell, int Qte) {
+    	this.lignes.add(new Ligne(Qte, sell));
+    }
+    
+    private class Ligne {
+        /**
+         * Default constructor
+         */
+        public Ligne(int qte, Sellable sale) {
+        	this.quantite = qte;
+        	this.article = sale;
+        	this.prix = this.quantite * this.article.getPrice();
+        }
+
+        /**
+         * 
+         */
+        private Integer quantite;
+
+        
+        private Sellable article;
+        /**
+         * 
+         */
+        private double prix;
+
+        public Integer getQuantite() {
+            return quantite;
+        }
+
+        public void setQuantite(Integer quantite) {
+            this.quantite = quantite;
+        }
+
+        public double getPrix() {
+            return this.prix;
+        }
     }
 }

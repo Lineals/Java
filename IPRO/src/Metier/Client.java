@@ -56,7 +56,7 @@ public class Client {
         this.nom=nom;
         this.prenom=prenom;
         this.adresse=adresse;
-        this.Boutique= Controleur.Boutique.getInstance();
+        this.Boutique= Boutique.getInstance();
         this.commandes= new ArrayList<>();
         this.factures= new ArrayList<>();
     }

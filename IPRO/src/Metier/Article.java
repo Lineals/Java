@@ -46,8 +46,8 @@ public abstract class Article implements Sellable {
     /**
      * Constructeur par défaut de l'article
      */
-    public void Article(String nom, String marque, String reference, Double coutObtention, Double prix) {
-        this.boutique=Controleur.Boutique.getInstance();
+    public Article(String nom, String marque, String reference, Double coutObtention, Double prix) {
+        this.boutique=Boutique.getInstance();
         this.coutObtention=coutObtention;
         this.marque=marque;
         this.nom=nom;
