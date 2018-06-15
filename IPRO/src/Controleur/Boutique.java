@@ -19,16 +19,15 @@ public class Boutique {
     private float CA;
 
     /**
-     * 
+     *
      */
     private float benefice;
 
 
     /**
-     * 
+     *
      */
     public ArrayList<Client> clients ;
-
 
 
     /**
@@ -44,52 +43,25 @@ public class Boutique {
     public ArrayList<Commande> commandes;
 
     private Boutique(){
-        this.stock=new HashMap<Article,Integer>();
+        this.stock=new HashMap<>();
         this.benefice=0;
         this.CA=0;
         this.coutFonctionnement=0;
-        this.clients=new ArrayList<Client>();
-        this.commandes=new ArrayList<Commande>();
+        this.clients=new ArrayList<>();
+        this.commandes=new ArrayList<>();
     }
     public static Boutique getInstance(){return INSTANCE;}
-    /**
-     * @return
-     */
-    public String AfficherClients() {
-        String res="";
-        for (Client cl:
-             clients) {
 
-            res+="\n"+ cl.toString();
-        }
-        return res;
-    }
-
-    /**
-     * @return
-     */
-    public Collection<Commande> AfficherCommandes() {
-        return this.commandes;
-    }
-
-    /**
-     * @param IdClient 
-     * @return
-     */
-    public Collection<Commande> AfficherCommandesClient(Integer IdClient) {
-        return this.commandes;
-    }
     public void modifierStock(Article article,int delta){
         if(this.stock.containsKey(article)){
             this.stock.put(article,this.stock.get(article)+delta);
         }
-
     }
 
     /**
      * permet d'ajouter un article ou de définir le nombre d'occurences d'un article déjà existant
-     * @param article
-     * @param quantite
+     * @param article l'article
+     * @param quantite la quantite
      */
     public void ajouterArticle(Article article, int quantite){
         this.stock.put(article,quantite);
@@ -99,20 +71,38 @@ public class Boutique {
             this.clients.add(client);
         }
     }
-    public Client getClient(int id){
-        for (Client cl:
-             clients) {
-            if(cl.getId()==id){
-                return cl;
-            }
-
-        }
-        return null;
-    }
     public void ajouterCommande(Commande commande){
         if(this.commandes.contains(commande)){
             this.commandes.add(commande);
         }
     }
 
+    public float getCoutFonctionnement() {
+        return coutFonctionnement;
+    }
+
+    public void setCoutFonctionnement(float coutFonctionnement) {
+        this.coutFonctionnement = coutFonctionnement;
+    }
+
+    public float getCA() {
+        return CA;
+    }
+
+    public void setCA(float CA) {
+        this.CA = CA;
+    }
+
+    public float getBenefice() {
+        return benefice;
+    }
+
+    public void setBenefice(float benefice) {
+        this.benefice = benefice;
+    }
+
+    @Override
+    public String toString() {
+        return "Bénéfice "+INSTANCE.getBenefice()+"\nChiffre d'affaires "+INSTANCE.getCA()+"\nCount fonctionnnement "+INSTANCE.getCoutFonctionnement();
+    }
 }
