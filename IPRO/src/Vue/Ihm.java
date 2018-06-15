@@ -2,13 +2,8 @@ package Vue;
 
 import Controleur.Boutique;
 import Metier.Client;
-import com.sun.javaws.jnl.JavaFXAppDesc;
-
-import java.awt.*;
-import java.util.*;
 
 import javafx.application.Application;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
