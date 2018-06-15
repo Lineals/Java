@@ -34,7 +34,9 @@ public class Boutique {
     /**
      * 
      */
+
     public HashMap<Article,Integer> stock;
+
 
     /**
      * 

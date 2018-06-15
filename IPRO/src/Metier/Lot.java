@@ -43,11 +43,7 @@ public class Lot implements Sellable {
     /**
      * 
      */
-    private Article article;
 
-    /**
-     * 
-     */
     public Article Articles;
 
     /**
