@@ -12,7 +12,12 @@ public class Lot implements Sellable {
     /**
      * Default constructor
      */
-    public Lot() {
+    public Lot(String ref, int number, double percent, Article comp) {
+    	if (percent >= 100) { percent = 100; }
+    	this.reference = ref;
+    	this.nombre = number;
+    	this.pourcent = percent;
+    	this.article = comp;
     }
 
     /**
@@ -44,29 +49,20 @@ public class Lot implements Sellable {
      * 
      */
 
-    public Article Articles;
-
-    /**
-     * 
-     */
-    public void Lot() {
-        // TODO implement here
-    }
+    public Article article;
 
     /**
      * @return
      */
     public double calculerPrix() {
-        // TODO implement here
-        return 0.0d;
+        return this.nombre * (this.article.getPrice() * (1 - (this.pourcent / 100)));
     }
 
     /**
      * @return
      */
     public String genererNom() {
-        // TODO implement here
-        return "";
+        return "Lot de " + this.nombre + this.article;
     }
 
     /**
