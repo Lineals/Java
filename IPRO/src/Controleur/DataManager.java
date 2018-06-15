@@ -1,16 +1,14 @@
 package Controleur;
 
-import java.util.*;
-
 /**
  * 
  */
-public class Datamanager {
+public class DataManager {
 
     /**
      * Default constructor
      */
-    public Datamanager() {
+    public DataManager() {
     }
 
 }
