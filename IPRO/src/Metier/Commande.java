@@ -128,7 +128,15 @@ public class Commande {
     public void addSellable(Sellable sell, int Qte) {
     	this.lignes.add(new Ligne(Qte, sell));
     }
-    
+
+    public Client getClient() {
+        return Client;
+    }
+
+    public void setClient(Client client) {
+        Client = client;
+    }
+
     private class Ligne {
         /**
          * Default constructor
