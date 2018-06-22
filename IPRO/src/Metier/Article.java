@@ -56,40 +56,19 @@ public abstract class Article implements Sellable {
     }
 
     /**
-     * Renvoi la référence de l'article
-     */
-    public String getReference() {
-        return this.reference;
-    }
-
-    /**
      * Nouvelle reference de l'article
      * @param ref
      */
     public void setReference(String ref) {
         this.reference=ref;
     }
-    /**
-     * Renvoi le nom de l'article
-     * @return nom
-     */
-    public String getNom() {
-        return nom;
-    }
+
     /**
      * Nouveau nom de l'article
      * @param nom
      */
     public void setNom(String nom) {
         this.nom = nom;
-    }
-
-    /**
-     * Renvoi la marque de l'article
-     * @return marque
-     */
-    public String getMarque() {
-        return marque;
     }
 
     /**
