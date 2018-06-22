@@ -43,10 +43,6 @@ public class Client {
      */
     private ArrayList<Facture> factures;
 
-    /**
-     * La boutique
-     */
-    public Boutique Boutique;
 
     /**
      * Default constructor
@@ -56,7 +52,6 @@ public class Client {
         this.nom=nom;
         this.prenom=prenom;
         this.adresse=adresse;
-        this.Boutique= Boutique.getInstance();
         this.commandes= new ArrayList<>();
         this.factures= new ArrayList<>();
     }
