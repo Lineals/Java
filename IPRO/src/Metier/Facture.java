@@ -47,7 +47,7 @@ public class Facture {
     /**
      * 
      */
-    public void Facture(Commande commande) {
+    public Facture(Commande commande) {
         this.id = count.getAndIncrement();
         this.date= LocalDateTime.now();
         this.commande=commande;
