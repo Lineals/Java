@@ -59,14 +59,12 @@ public class Facture {
      * @return
      */
     public String genererFacture() {
-    	StringBuilder strBuild = new StringBuilder();
-    	strBuild.append("ID: " + this.id);
-        strBuild.append("\nDate: " + this.date);
-        strBuild.append("\nID commande: " + this.commande.getId());
-        strBuild.append("\nID client: " + this.client);
-        strBuild.append("\nPrix HT: " + this.prix.getKey());
-        strBuild.append("\nPrix TTC: " + this.prix.getValue());
-        return strBuild.toString();
+        return "ID: " + this.id +
+                "\nDate: " + this.date +
+                "\nID commande: " + this.commande.getId() +
+                "\nID client: " + this.client +
+                "\nPrix HT: " + this.prix.getKey() +
+                "\nPrix TTC: " + this.prix.getValue();
     }
 
 }
