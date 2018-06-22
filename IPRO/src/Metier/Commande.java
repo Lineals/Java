@@ -54,11 +54,6 @@ public class Commande {
     /**
      * 
      */
-    public Boutique Boutique;
-
-    /**
-     * 
-     */
     public Client Client;
 
     public Commande(Client client) {
@@ -69,7 +64,6 @@ public class Commande {
         this.fraisDePort = 0;
         this.prixTotal = 0;
         this.estFinalisee = false;
-        this.Boutique= Boutique.getInstance();
         this.Client=client;
     }
 
