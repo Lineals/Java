@@ -131,6 +131,20 @@ public class Commande {
         Client = client;
     }
 
+    @Override
+    public String toString() {
+        return "Commande{" +
+                "id=" + id +
+                ", date=" + date +
+                ", lignes=" + lignes +
+                ", tauxReduc=" + tauxReduc +
+                ", fraisDePort=" + fraisDePort +
+                ", prixTotal=" + prixTotal +
+                ", estFinalisee=" + estFinalisee +
+                ", Client=" + Client +
+                '}';
+    }
+
     private class Ligne {
         /**
          * Default constructor
@@ -163,6 +177,15 @@ public class Commande {
 
         public double getPrix() {
             return this.prix;
+        }
+
+        @Override
+        public String toString() {
+            return "Ligne{" +
+                    "quantite=" + quantite +
+                    ", article=" + article +
+                    ", prix=" + prix +
+                    '}';
         }
     }
 }
