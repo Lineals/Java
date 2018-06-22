@@ -11,6 +11,8 @@ import java.util.concurrent.atomic.AtomicInteger;
  * 
  */
 public class Facture {
+	
+	public static final double TVA = 1.20;
 
     /**
      * 
@@ -50,17 +52,21 @@ public class Facture {
         this.date= LocalDateTime.now();
         this.commande=commande;
         this.client=commande.getClient();
-        this.prix = new Pair<>(commande.getPrixTotal(),commande.getPrixTotal()*1.20);
+        this.prix = new Pair<>(commande.getPrixTotal(),commande.getPrixTotal() * TVA);
     }
 
     /**
      * @return
      */
     public String genererFacture() {
-        String res;
-        res="id: "+this.id+" date "+this.date+" id commande: "+this.commande.getId()+" id client "+this.client.getId()+
-                "\n Prix HT: "+this.prix.getKey()+" prix TTC: "+this.prix.getValue();
-        return res;
+    	StringBuilder strBuild = new StringBuilder();
+    	strBuild.append("ID: " + this.id);
+        strBuild.append("\nDate: " + this.date);
+        strBuild.append("\nID commande: " + this.commande.getId());
+        strBuild.append("\nID client: " + this.client);
+        strBuild.append("\nPrix HT: " + this.prix.getKey());
+        strBuild.append("\nPrix TTC: " + this.prix.getValue());
+        return strBuild.toString();
     }
 
 }
