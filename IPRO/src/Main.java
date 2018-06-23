@@ -1,4 +1,8 @@
+import Controleur.Boutique;
+import Metier.Client;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
@@ -12,11 +16,17 @@ import java.io.IOException;
  * Main application class.
  */
 public class Main extends Application {
+    Boutique maboutique;
 
     @Override
     public void start(Stage stage) throws Exception{
         stage.setTitle("Vista Viewer");
-
+        maboutique = Boutique.getInstance();
+        maboutique.ajouterClient(new Client("lineal","remy","1 avenue de la resistance"));
+        maboutique.ajouterClient(new Client("toast","theo","1 rue de la resistance"));
+        maboutique.ajouterClient(new Client("oropo","emilio","1 square de la resistance"));
+        maboutique.setCA(100204);
+        maboutique.setCoutFonctionnement(1004);
         stage.setScene(
             createScene(
                 loadMainPane()
@@ -43,10 +53,12 @@ public class Main extends Application {
             )
         );
 
+
         MainController mainController = loader.getController();
 
         VistaNavigator.setMainController(mainController);
-        VistaNavigator.loadVista(VistaNavigator.VISTA_1);
+        VistaNavigator.loadVista(VistaNavigator.DASHBOARD);
+
 
         return mainPane;
     }
@@ -64,11 +76,12 @@ public class Main extends Application {
         );
 
         scene.getStylesheets().setAll(
-            getClass().getResource("vue/vista.css").toExternalForm()
+            getClass().getResource("vue/modena.css").toExternalForm()
         );
 
         return scene;
     }
+
 
     public static void main(String[] args) {
         launch(args);

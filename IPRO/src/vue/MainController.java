@@ -1,5 +1,6 @@
 package vue;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.layout.StackPane;
@@ -21,5 +22,26 @@ public class MainController {
     public void setVista(Node node) {
         vistaHolder.getChildren().setAll(node);
     }
+    @FXML
+    void dashBoard(ActionEvent event) {
+
+        VistaNavigator.loadVista(VistaNavigator.DASHBOARD);
+     }
+
+    @FXML
+    void orders(ActionEvent event) {
+        VistaNavigator.loadVista(VistaNavigator.ORDERS);
+    }
+
+    @FXML
+    void clients(ActionEvent event) {
+        VistaNavigator.loadVista(VistaNavigator.CLIENTS);
+    }
+
+    @FXML
+    void stock(ActionEvent event) {
+        VistaNavigator.loadVista(VistaNavigator.STOCK);
+    }
+
 
 }

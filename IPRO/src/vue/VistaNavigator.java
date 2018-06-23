@@ -16,8 +16,10 @@ public class VistaNavigator {
      * Convenience constants for fxml layouts managed by the navigator.
      */
     public static final String MAIN    = "vue/main.fxml";
-    public static final String VISTA_1 = "vista1.fxml";
-    public static final String VISTA_2 = "vista2.fxml";
+    public static final String DASHBOARD = "dashboard.fxml";
+    public static final String ORDERS = "orders.fxml";
+    public static final String CLIENTS = "clients.fxml";
+    public static final String STOCK = "stock.fxml";
 
     /** The main application layout controller. */
     private static MainController mainController;
