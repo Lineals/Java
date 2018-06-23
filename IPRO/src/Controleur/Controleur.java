@@ -5,6 +5,7 @@ import Metier.*;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
 
 public class Controleur {
     public static String afficherClients() {
@@ -42,27 +43,31 @@ public class Controleur {
         return res;
     }
     public static Client getClientById(int idClient){
+    	Client client = null;
         for(Client cl : Boutique.getInstance().clients){
             if(cl.getId()==idClient){
-                return cl;
+                client = cl;
             }
         }
-        return null;
+        return client;
     }
     public static Commande getCommandeById(int idCommande){
+    	Commande commande = null;
         for (Commande com : Boutique.getInstance().commandes){
             if(com.getId()==idCommande){
-                return com;
+                commande = com;
             }
         }
-        return null;
+        return commande;
     }
     public static Article getArticleByReference(String ref){
+    	Article article = null;
         for(Article art : Boutique.getInstance().stock.keySet()){
             if(art.getRef()==ref){
-                return art;
+                article = art;
             }
         }
-        return null;
+        return article;
     }
+    
 }
