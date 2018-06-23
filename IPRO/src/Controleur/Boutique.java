@@ -94,12 +94,9 @@ public class Boutique {
     }
 
     public float getBenefice() {
-        return benefice;
+        return this.CA-this.coutFonctionnement;
     }
 
-    public void setBenefice(float benefice) {
-        this.benefice = benefice;
-    }
 
     @Override
     public String toString() {
