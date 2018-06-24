@@ -71,6 +71,18 @@ public class Boutique {
             this.clients.add(client);
         }
     }
+    public ArrayList<Client> getClients(){
+        return clients;
+    }
+
+    public HashMap<Article, Integer> getStock() {
+        return stock;
+    }
+
+    public ArrayList<Commande> getCommandes() {
+        return commandes;
+    }
+
     public void ajouterCommande(Commande commande){
         if(this.commandes.contains(commande)){
             this.commandes.add(commande);
