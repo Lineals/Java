@@ -25,9 +25,9 @@ public class dashboardController {
     private Label benefice;
     @FXML
     private void initialize(){
-        ca.setText(Float.toString(Boutique.getInstance().getCA()));
-        cout.setText(Float.toString(Boutique.getInstance().getCoutFonctionnement()));
-        benefice.setText(Float.toString(Boutique.getInstance().getBenefice()));
+        ca.setText(Float.toString(Boutique.getInstance().getCA())+" €");
+        cout.setText(Float.toString(Boutique.getInstance().getCoutFonctionnement())+" €");
+        benefice.setText(Float.toString(Boutique.getInstance().getBenefice())+" €");
     }
 /*    public void setLabel(String labelText){
         ca.setText(labelText);
