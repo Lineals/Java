@@ -15,11 +15,11 @@ public class VistaNavigator {
     /**
      * Convenience constants for fxml layouts managed by the navigator.
      */
-    public static final String MAIN    = "vue/main.fxml";
-    public static final String DASHBOARD = "dashboard.fxml";
-    public static final String ORDERS = "orders.fxml";
-    public static final String CLIENTS = "clients.fxml";
-    public static final String STOCK = "stock.fxml";
+    public static final String MAIN    = "vue/fxml/main.fxml";
+    public static final String DASHBOARD = "fxml/dashboard.fxml";
+    public static final String ORDERS = "fxml/orders.fxml";
+    public static final String CLIENTS = "fxml/clients.fxml";
+    public static final String STOCK = "fxml/stock.fxml";
 
     /** The main application layout controller. */
     private static MainController mainController;
