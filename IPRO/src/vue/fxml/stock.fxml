@@ -4,7 +4,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.StackPane?>
-<StackPane fx:id="vista2" xmlns:fx="http://javafx.com/fxml" fx:controller="vue.stockController">
+<StackPane fx:id="vista2" xmlns:fx="http://javafx.com/fxml" fx:controller="Vue.stockController">
     <children>
         <Button mnemonicParsing="false" text="stock" />
     </children>

@@ -1,4 +1,4 @@
-package vue;
+package Vue;
 
 import Controleur.Controleur;
 import javafx.event.ActionEvent;

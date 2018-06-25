@@ -1,4 +1,4 @@
-package vue;
+package Vue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 public class stockController {

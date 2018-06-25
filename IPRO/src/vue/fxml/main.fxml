@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?scenebuilder-stylesheet modena.css?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="827.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vue.MainController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="827.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Vue.MainController">
    <left>
       <VBox alignment="CENTER" prefHeight="254.0" prefWidth="156.0" spacing="15.0" BorderPane.alignment="CENTER">
          <children>

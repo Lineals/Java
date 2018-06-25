@@ -1,4 +1,4 @@
-package vue;
+package Vue;
 
 import javafx.fxml.FXMLLoader;
 

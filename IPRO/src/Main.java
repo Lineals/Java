@@ -7,8 +7,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import vue.MainController;
-import vue.VistaNavigator;
+import Vue.MainController;
+import Vue.VistaNavigator;
 
 import java.io.IOException;
 
@@ -76,7 +76,7 @@ public class Main extends Application {
         );
 
         scene.getStylesheets().setAll(
-            getClass().getResource("vue/modena.css").toExternalForm()
+            getClass().getResource("Vue/css/modena.css").toExternalForm()
         );
 
         return scene;
