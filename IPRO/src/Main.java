@@ -1,5 +1,8 @@
 import Controleur.Boutique;
+import Metier.Article;
 import Metier.Client;
+import Metier.Commande;
+import Metier.Stylo;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,9 +25,13 @@ public class Main extends Application {
     public void start(Stage stage) throws Exception{
         stage.setTitle("Vista Viewer");
         maboutique = Boutique.getInstance();
-        maboutique.ajouterClient(new Client("lineal","remy","1 avenue de la resistance"));
+        Client lineal = new Client("lineal","remy","1 avenue de la resistance");
+        maboutique.ajouterClient(lineal);
         maboutique.ajouterClient(new Client("toast","theo","1 rue de la resistance"));
         maboutique.ajouterClient(new Client("oropo","emilio","1 square de la resistance"));
+        maboutique.ajouterArticle(new Stylo("monstylo","carrouf","moncar",1.0,2.0, Stylo.Couleur.BLEU),4);
+        Commande macommande = new Commande(lineal,4,0);
+        maboutique.ajouterCommande(macommande);
         maboutique.setCA(100204);
         maboutique.setCoutFonctionnement(1004);
         stage.setScene(

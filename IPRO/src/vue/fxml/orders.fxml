@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?scenebuilder-stylesheet modena.css?>
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Pane fx:controller="Vue.ordersController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="259.0" layoutY="14.0" text="Commandes" />
-      <TableView layoutX="10.0" layoutY="90.0" prefHeight="298.0" prefWidth="578.0">
+      <Label layoutX="259.0" layoutY="14.0" text="Commandes"  />
+      <TableView layoutX="10.0" layoutY="90.0" prefHeight="298.0" prefWidth="578.0" fx:id="tableView">
         <columns>
-          <TableColumn prefWidth="100.0" text="ID" />
-          <TableColumn prefWidth="100.0" text="Client" />
-            <TableColumn prefWidth="100.0" text="Port" />
-            <TableColumn prefWidth="100.0" text="Discount" />
-            <TableColumn prefWidth="100.0" text="Price" />
-            <TableColumn prefWidth="78.0" text="Finalised" />
+          <TableColumn prefWidth="100.0" text="ID" fx:id="id"/>
+          <TableColumn prefWidth="100.0" text="Client" fx:id="client"/>
+            <TableColumn prefWidth="100.0" text="Port" fx:id="port"/>
+            <TableColumn prefWidth="100.0" text="Discount" fx:id="discount"/>
+            <TableColumn prefWidth="100.0" text="Price" fx:id="price"/>
+            <TableColumn prefWidth="78.0" text="Finalised" fx:id="finalised"/>
         </columns>
       </TableView>
-      <MenuButton layoutX="10.0" layoutY="57.0" mnemonicParsing="false" text="Actions">
-        <items>
-          <MenuItem mnemonicParsing="false" text="Search by ID" />
-          <MenuItem mnemonicParsing="false" text="Search by Client" />
-            <MenuItem mnemonicParsing="false" text="Add new command" />
-        </items>
-      </MenuButton>
+      <ComboBox fx:id="action" layoutX="14.0" layoutY="58.0" prefWidth="150.0" promptText="Action" />
+      <TextField layoutX="202.0" layoutY="58.0" fx:id="txt_field" visible="false"/>
+      <Button layoutX="366.0" layoutY="58.0" mnemonicParsing="false" text="Search this id" fx:id="btn_id" visible="false"/>
+      <Button layoutX="366.0" layoutY="58.0" mnemonicParsing="false" text="Search this client" fx:id="btn_client" visible="false"/>
+      <Button layoutX="366.0" layoutY="58.0" mnemonicParsing="false" text="Add this shit" fx:id="btn_add" visible="false"/>
    </children>
 </Pane>
