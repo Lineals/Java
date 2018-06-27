@@ -15,7 +15,7 @@ public class Client {
     public static AtomicInteger count = new AtomicInteger(0);
 
     /**
-     * Id du Client
+     * Id du client
      */
     private Integer id;
 
@@ -106,7 +106,7 @@ public class Client {
 
     @Override
     public String toString() {
-        return "Client{" +
+        return "client{" +
                 "id=" + id +
                 ", nom='" + nom + '\'' +
                 ", prenom='" + prenom + '\'' +

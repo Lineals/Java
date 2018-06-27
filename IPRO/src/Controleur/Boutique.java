@@ -84,7 +84,7 @@ public class Boutique {
     }
 
     public void ajouterCommande(Commande commande){
-        if(this.commandes.contains(commande)){
+        if(!this.commandes.contains(commande)){
             this.commandes.add(commande);
         }
     }
