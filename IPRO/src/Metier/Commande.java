@@ -55,6 +55,17 @@ public class Commande {
      * 
      */
     public Client Client;
+    
+    public Commande(Client client, Integer id, LocalDateTime time, 
+    				float reduc, float prix, boolean isend) {
+    	this.id = id;
+    	this.date = time;
+    	this.tauxReduc = reduc;
+    	this.fraisDePort = prix;
+    	this.estFinalisee = isend;
+    	this.Client = client;
+    }
+    
 
     public Commande(Client client) {
         this.id = count.getAndIncrement();
@@ -62,7 +73,6 @@ public class Commande {
         this.lignes = new ArrayList<Ligne>();
         this.tauxReduc = 0;
         this.fraisDePort = 0;
-        this.prixTotal = 0;
         this.estFinalisee = false;
         this.Client=client;
     }

@@ -1,6 +1,7 @@
 package Controleur;
 
 import Metier.*;
+import Dao.*;
 
 import java.util.HashMap;
 import java.util.Iterator;
