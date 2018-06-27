@@ -55,6 +55,15 @@ public class Client {
         this.commandes= new ArrayList<>();
         this.factures= new ArrayList<>();
     }
+    
+    public Client(String nom, String prenom,String adresse, int id) {
+        this.id = id;
+        this.nom=nom;
+        this.prenom=prenom;
+        this.adresse=adresse;
+        this.commandes= new ArrayList<>();
+        this.factures= new ArrayList<>();
+    }
 
     public Integer getId() {
         return id;

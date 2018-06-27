@@ -6,7 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import Controleur.Controleur;
 import Metier.Client;
+import Metier.Commande;
 
 public class ClientDAO extends DAO<Client>{
 
@@ -17,8 +19,22 @@ public class ClientDAO extends DAO<Client>{
 
 	@Override
 	public ArrayList<Client> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Client> listClient = new ArrayList<Client>();
+		
+		String query = "SELECT * FROM CLIENT";
+		PreparedStatement preparedStatement;
+		try {
+			preparedStatement = this.connection.prepareStatement(query);
+			ResultSet rSet = preparedStatement.executeQuery();
+			
+			while (rSet.next()) {
+				Client client = new Client(rSet.getString("nom"), rSet.getString("prenom"), rSet.getString("adresse"), rSet.getInt("idclient"));
+				listClient.add(client);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return listClient;
 	}
 
 	@Override

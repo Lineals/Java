@@ -1,5 +1,8 @@
 package Controleur;
 import Metier.*;
+import Dao.*;
+
+import java.sql.Connection;
 import java.util.*;
 
 /**
@@ -49,6 +52,7 @@ public class Boutique {
         this.coutFonctionnement=0;
         this.clients=new ArrayList<>();
         this.commandes=new ArrayList<>();
+        this.feedAll();
     }
     public static Boutique getInstance(){return INSTANCE;}
 
@@ -107,6 +111,12 @@ public class Boutique {
 
     public float getBenefice() {
         return this.CA-this.coutFonctionnement;
+    }
+    
+    public void feedAll() {
+    	Connection connection = DbConnector.getDbConnector();
+    	this.clients = new ClientDAO(connection).findAll();
+    	this.commandes = new CommandeDAO(connection).findAll();
     }
 
 
