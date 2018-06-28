@@ -16,21 +16,20 @@ import Metier.Sellable;
 			this.connection = con;
 		}
 		
-		public HashMap<Sellable, Integer> fetchAll() {
-			HashMap<Sellable, Integer> hashMap = new HashMap<>();
+		public HashMap<Sellable, Integer> updateStock(HashMap<Sellable, Integer> hm) {
 			String query = "SELECT * FROM stock";
 			PreparedStatement preparedStatement;
 			try {
 				preparedStatement = this.connection.prepareStatement(query);
 				ResultSet resultSet = preparedStatement.executeQuery();
 				while (resultSet.next()) {
-					hashMap.put(Controleur.getArticleByReference(resultSet.getString("refart"))
+					hm.put(Controleur.getArticleByReference(resultSet.getString("refart"))
 							    ,resultSet.getInt("qte"));
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			return hashMap;
+			return hm;
 			
 		}
 		
