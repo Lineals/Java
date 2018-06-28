@@ -159,7 +159,7 @@ public class Commande {
                 '}';
     }
 
-    private class Ligne {
+    public class Ligne {
         /**
          * Default constructor
          */
@@ -191,6 +191,10 @@ public class Commande {
 
         public double getPrix() {
             return this.prix;
+        }
+        
+        public Sellable getSell() {
+        	return this.article;
         }
 
         @Override
