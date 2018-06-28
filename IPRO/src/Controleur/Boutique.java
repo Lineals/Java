@@ -91,6 +91,18 @@ public class Boutique {
     public ArrayList<Commande> getCommandes() {
         return commandes;
     }
+    
+    public int getHighestCommandId() {
+    	int value = 0;
+    	for (Commande commande: this.commandes) if(commande.getId() > value) value = commande.getId();
+    	return value;
+    }
+    
+    public int getHighestClientId() {
+    	int value = 0;
+    	for (Client client: this.clients) if(client.getId() > value) value = client.getId();
+    	return value;
+    }
 
     public void ajouterCommande(Commande commande){
         if(!this.commandes.contains(commande)){

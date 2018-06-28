@@ -2,7 +2,10 @@ package Metier;
 
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.PrimitiveIterator.OfDouble;
 import java.util.concurrent.atomic.AtomicInteger;
+
+import Controleur.Boutique;
 
 /**
  * 
@@ -13,7 +16,7 @@ public class Commande {
     /**
      * 
      */
-    public static final AtomicInteger count= new AtomicInteger(0);
+    public static AtomicInteger count = null;
 
     /**
      * 
@@ -68,7 +71,10 @@ public class Commande {
 
 
     public Commande(Client client, 	float reduc, float fpd) {
-        this.id = count.getAndIncrement();
+    	if (count == null) {
+    		count = new AtomicInteger(Boutique.getInstance().getHighestCommandId());
+    	}
+        this.id = count.incrementAndGet();
         this.date = LocalDateTime.now();
         this.tauxReduc = reduc;
         this.fraisDePort = fpd;

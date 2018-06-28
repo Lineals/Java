@@ -23,7 +23,7 @@ public class CommandeDAO extends DAO<Commande>{
 	public boolean create(Commande objet) {
 		Boolean result = false;
 		String query = "INSERT INTO commande VALUES (?, ?, ?, ?, ?, ?, ?)";
-		String queryLigne = "INSERT INTO ligne VALUES (?, ?, ?, ?)";
+		String queryLigne = "INSERT INTO ligne VALUES (?, ?, ?)";
 		PreparedStatement preparedStatement;
 		
 		try {
@@ -40,14 +40,8 @@ public class CommandeDAO extends DAO<Commande>{
 			for (Ligne ligne: objet.getArticles()) {
 				preparedStatement = this.connection.prepareStatement(queryLigne);
 				preparedStatement.setInt(1, objet.getId());
-				if(ligne.getSell() instanceof Lot) {
-					preparedStatement.setString(2, ligne.getSell().getRef());
-					preparedStatement.setNull(3, java.sql.Types.NULL);
-				} else {
-					preparedStatement.setNull(2, java.sql.Types.NULL);
-					preparedStatement.setString(3, ligne.getSell().getRef());
-				}
-				preparedStatement.setInt(4, ligne.getQuantite());
+				preparedStatement.setString(2, ligne.getArticle().getRef());
+				preparedStatement.setInt(3, ligne.getQuantite());
 				preparedStatement.executeUpdate();
 			}
 			result = true;

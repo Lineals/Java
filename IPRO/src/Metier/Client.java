@@ -12,7 +12,7 @@ public class Client {
     /**
      * Auto increment pour générer un id unique a chaque client
      */
-    public static AtomicInteger count = new AtomicInteger(0);
+    public static AtomicInteger count = null;
 
     /**
      * Id du client
@@ -48,7 +48,10 @@ public class Client {
      * Default constructor
      */
     public Client(String nom, String prenom,String adresse) {
-        this.id = count.getAndIncrement();
+    	if (count == null) {
+    		count = new AtomicInteger(Boutique.getInstance().getHighestCommandId());
+    	}
+        this.id = count.incrementAndGet();
         this.nom=nom;
         this.prenom=prenom;
         this.adresse=adresse;
