@@ -47,8 +47,12 @@ public class createOrderController implements Initializable {
     private TableColumn<Commande.Ligne, String> column_amount;
     @FXML
     private TableColumn<Commande.Ligne, String> column_price;
+    @FXML
+    private ToggleButton creer;
+    @FXML
+    private ToggleButton modifier;
 
-    private Commande commande ;
+    private Commande commande = new Commande(null,0,0);
     private Client client ;
     private Article article ;
     private ArrayList<Commande.Ligne> lignes = new ArrayList<>();
@@ -61,13 +65,18 @@ public class createOrderController implements Initializable {
          */
         txt_taux_reduc.setText("");
         txt_fdp.setText("");
+        cbb_commande.setVisible(false);
 
 
         /**
          * Commandes
          */
         ArrayList<Commande> Commandes = Boutique.getInstance().getCommandes();
-        cbb_commande.setItems(FXCollections.observableArrayList(Commandes));
+        ArrayList<Commande> CommandesNonfinalises = new ArrayList<Commande>();
+        for (Commande com : Commandes){
+            if(!com.getEstFinalisee()){CommandesNonfinalises.add(com);}
+        }
+        cbb_commande.setItems(FXCollections.observableArrayList(CommandesNonfinalises));
 
         cbb_commande.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Commande>() {
             @Override public void changed(ObservableValue<? extends Commande> selected, Commande oldCommande, Commande newCommande) {
@@ -82,7 +91,8 @@ public class createOrderController implements Initializable {
 
         cbb_clients.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Client>() {
             @Override public void changed(ObservableValue<? extends Client> selected, Client oldClient, Client newClient) {
-                client=newClient;
+                commande.setClient(newClient);
+
             }
         });
         /**
@@ -123,11 +133,20 @@ public class createOrderController implements Initializable {
     }
     @FXML
     void addArticle(){
+        boolean exists=false;
         System.out.println(cbb_articles.getSelectionModel());
         Sellable monsellable = (Sellable) cbb_articles.getValue();
-        System.out.println(txt_quantity.getText());
-        System.out.println(monsellable.getRef());
-        commande.addSellable(monsellable,Integer.parseInt(txt_quantity.getText()));
+        Integer maquantite = Integer.parseInt(txt_quantity.getText());
+        ArrayList<Commande.Ligne> lignes = commande.getArticles();
+        for (Commande.Ligne l:lignes) {
+            if (l.getArticle().equals(monsellable)) {
+                exists=true;
+                l.setQuantite(l.getQuantite()+maquantite);
+            }
+        }
+        if(!exists){
+            commande.addSellable(monsellable,maquantite);
+        }
         majTableView();
 
     }
@@ -142,8 +161,13 @@ public class createOrderController implements Initializable {
     void saveOrder(){
         float reduc = Float.valueOf(txt_taux_reduc.getText());
         float fdp = Float.valueOf(txt_fdp.getText());
-        Commande com = new Commande(client,reduc,fdp);
-        Boutique.getInstance().ajouterCommande(com);
+        commande.setTauxReduc(reduc);
+        commande.setFraisDePort(fdp);
+        commande.setArticles(new ArrayList<>(parseLineList()));
+        if(creer.isSelected()){
+            Boutique.getInstance().ajouterCommande(commande);
+        }
+        majTableView();
     }
     @FXML
     void cancelOrder(){
@@ -155,6 +179,18 @@ public class createOrderController implements Initializable {
         if(commande!=null){
             commande.setEstFinalisee(true);
         }
+
+    }
+    @FXML
+    void toggleCreer(){
+        modifier.setSelected(false);
+        cbb_commande.setVisible(false);
+        VistaNavigator.loadVista(VistaNavigator.CREATEORDER);
+    }
+    @FXML
+    void toggleModifier(){
+        creer.setSelected(false);
+        cbb_commande.setVisible(true);
 
     }
 
