@@ -9,8 +9,9 @@ import java.util.ArrayList;
 import Controleur.Controleur;
 import Metier.Article;
 import Metier.Lot;
+import Metier.Sellable;
 
-public class LotDAO extends DAO<Lot> {
+public class LotDAO extends DAO<Sellable> {
 
 	public LotDAO(Connection con) {
 		super(con);
@@ -18,16 +19,16 @@ public class LotDAO extends DAO<Lot> {
 	}
 
 	@Override
-	public boolean create(Lot objet) {
+	public boolean create(Sellable objet) {
 		boolean result = false;
 		String query = "INSERT INTO lot VALUES (?, ?, ?, ?)";
 		PreparedStatement preparedStatement;
 		try {
 			preparedStatement = this.connection.prepareStatement(query);
 			preparedStatement.setString(1, objet.getRef());
-			preparedStatement.setInt(2, objet.getNum());
-			preparedStatement.setDouble(3, objet.getTaux());
-			preparedStatement.setString(4, objet.getArticle().getRef());
+			preparedStatement.setInt(2, ((Lot) objet).getNum());
+			preparedStatement.setDouble(3, ((Lot) objet).getTaux());
+			preparedStatement.setString(4, ((Lot) objet).getArticle().getRef());
 			preparedStatement.executeUpdate();
 			result = true;
 		} catch (SQLException e) {
@@ -37,7 +38,7 @@ public class LotDAO extends DAO<Lot> {
 	}
 
 	@Override
-	public boolean delete(Lot objet) {
+	public boolean delete(Sellable objet) {
 		boolean result = false;
 		String query = "DELETE FROM lot WHERE redlot = ?";
 		PreparedStatement preparedStatement;
@@ -53,7 +54,7 @@ public class LotDAO extends DAO<Lot> {
 	}
 
 	@Override
-	public boolean update(Lot objet) {
+	public boolean update(Sellable objet) {
 		boolean result = false;
 		result = delete(objet);
 		result = create(objet);
@@ -61,8 +62,8 @@ public class LotDAO extends DAO<Lot> {
 	}
 
 	@Override
-	public ArrayList<Lot> findAll() {
-		ArrayList<Lot> arrayList = new ArrayList<>();
+	public ArrayList<Sellable> findAll() {
+		ArrayList<Sellable> arrayList = new ArrayList<>();
 		String query = "SELECT * FROM lot";
 		PreparedStatement preparedStatement;
 		try {

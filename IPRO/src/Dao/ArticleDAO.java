@@ -8,17 +8,18 @@ import java.util.ArrayList;
 
 import Metier.Article;
 import Metier.Papier;
+import Metier.Sellable;
 import Metier.Stylo;
 import Metier.Stylo.Couleur;
 
-public class ArticleDAO extends DAO<Article>{
+public class ArticleDAO extends DAO<Sellable>{
 
 	public ArticleDAO(Connection con) {
 		super(con);
 	}
 
 	@Override
-	public boolean create(Article objet) {
+	public boolean create(Sellable objet) {
 		Boolean result = false;
 		String query = "INSERT INTO article VALUES (?, ?, ?, ?, ?, ?, ?)";
 		PreparedStatement preparedStatement;
@@ -27,7 +28,7 @@ public class ArticleDAO extends DAO<Article>{
 			preparedStatement.setString(1, objet.getRef());
 			preparedStatement.setString(2, objet.getName());
 			preparedStatement.setString(3, objet.getBrand());
-			preparedStatement.setDouble(4, objet.getCoutObtention());
+			preparedStatement.setDouble(4, ((Article) objet).getCoutObtention());
 			preparedStatement.setDouble(5, objet.getPrice());
 			if (objet instanceof Stylo) {
 				System.out.println(((Stylo) objet).getColor());
@@ -46,7 +47,7 @@ public class ArticleDAO extends DAO<Article>{
 	}
 
 	@Override
-	public boolean delete(Article objet) {
+	public boolean delete(Sellable objet) {
 		Boolean result = false;
 		String query = "DELETE FROM article WHERE refarticle = ?";
 		PreparedStatement preparedStatement;
@@ -62,7 +63,7 @@ public class ArticleDAO extends DAO<Article>{
 	}
 
 	@Override
-	public boolean update(Article objet) {
+	public boolean update(Sellable objet) {
 		boolean result = false;
 		result = delete(objet);
 		result = create(objet);
@@ -102,8 +103,8 @@ public class ArticleDAO extends DAO<Article>{
 		return article;
 	}
 	
-	public ArrayList<Article> findAll() {
-		ArrayList<Article> listArticle = new ArrayList<Article>();
+	public ArrayList<Sellable> findAll() {
+		ArrayList<Sellable> listArticle = new ArrayList<Sellable>();
 		
 		String query = "SELECT * FROM ARTICLE";
 		PreparedStatement preparedStatement;

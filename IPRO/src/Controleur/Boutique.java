@@ -117,6 +117,15 @@ public class Boutique {
     	Connection connection = DbConnector.getDbConnector();
     	this.clients = new ClientDAO(connection).findAll();
     	this.commandes = new CommandeDAO(connection).findAll();
+    	ArrayList<Sellable> arrayList = new ArticleDAO(connection).findAll();
+    	for (Sellable sellable: arrayList) {
+    		this.stock.put(sellable, 0);
+    	}
+    	arrayList = new LotDAO(connection).findAll();
+		for (Sellable sellable: arrayList) {
+			this.stock.put(sellable, 0);
+		}
+    	this.stock = new StockDAO(connection).fetchAll();
     }
 
 
