@@ -147,16 +147,7 @@ public class Commande {
 
     @Override
     public String toString() {
-        return "Commande{" +
-                "id=" + id +
-                ", date=" + date +
-                ", lignes=" + lignes +
-                ", tauxReduc=" + tauxReduc +
-                ", fraisDePort=" + fraisDePort +
-                ", prixTotal=" + prixTotal +
-                ", estFinalisee=" + estFinalisee +
-                ", client=" + client +
-                '}';
+        return client + " : " + prixTotal + " €";
     }
 
     private class Ligne {
@@ -195,11 +186,7 @@ public class Commande {
 
         @Override
         public String toString() {
-            return "Ligne{" +
-                    "quantite=" + quantite +
-                    ", article=" + article +
-                    ", prix=" + prix +
-                    '}';
+            return article +    "x" + quantite ;
         }
     }
 }

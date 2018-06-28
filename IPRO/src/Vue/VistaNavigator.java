@@ -20,6 +20,7 @@ public class VistaNavigator {
     public static final String ORDERS = "fxml/orders.fxml";
     public static final String CLIENTS = "fxml/clients.fxml";
     public static final String STOCK = "fxml/stock.fxml";
+    public static final String CREATEORDER = "fxml/createOrder.fxml";
 
     /** The main application layout controller. */
     private static MainController mainController;
@@ -31,6 +32,10 @@ public class VistaNavigator {
      */
     public static void setMainController(MainController mainController) {
         VistaNavigator.mainController = mainController;
+    }
+
+    public static MainController getMainController() {
+        return mainController;
     }
 
     /**
