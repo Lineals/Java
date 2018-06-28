@@ -1,5 +1,6 @@
 package Controleur;
 import Metier.*;
+import javafx.scene.control.Control;
 import Dao.*;
 
 import java.sql.Connection;
@@ -82,11 +83,17 @@ public class Boutique {
 */
     }
     public void ajouterClient(Client client){
+    	ClientDAO clientDAO = new ClientDAO(DbConnector.getDbConnector());
         if(!this.clients.contains(client)){
             this.clients.add(client);
-/*            new ClientDAO(DbConnector.getDbConnector()).create(client);*/
+            clientDAO.create(client);
+        } else {
+        	this.clients.remove(Controleur.getClientById(client.getId()));
+        	this.clients.add(client);
+        	clientDAO.update(client);
         }
     }
+    
     public ArrayList<Client> getClients(){
         return clients;
     }

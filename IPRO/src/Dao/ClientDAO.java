@@ -59,7 +59,7 @@ public class ClientDAO extends DAO<Client>{
 	@Override
 	public boolean delete(Client objet) {
 		Boolean result = false;
-		String query = "DELETE FROM client WHERE id = ?";
+		String query = "DELETE FROM client WHERE idclient = ?";
 		PreparedStatement preparedStatement;
 		try {
 			preparedStatement = this.connection.prepareStatement(query);

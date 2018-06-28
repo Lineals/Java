@@ -49,7 +49,7 @@ public class Client {
      */
     public Client(String nom, String prenom,String adresse) {
     	if (count == null) {
-    		count = new AtomicInteger(Boutique.getInstance().getHighestCommandId());
+    		count = new AtomicInteger(Boutique.getInstance().getHighestClientId());
     	}
         this.id = count.incrementAndGet();
         this.nom=nom;

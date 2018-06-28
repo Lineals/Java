@@ -21,6 +21,7 @@ public class VistaNavigator {
     public static final String CLIENTS = "fxml/clients.fxml";
     public static final String STOCK = "fxml/stock.fxml";
     public static final String CREATEORDER = "fxml/createOrder.fxml";
+    public static final String CREATECLIENT = "fxml/createClient.fxml";
 
     /** The main application layout controller. */
     private static MainController mainController;

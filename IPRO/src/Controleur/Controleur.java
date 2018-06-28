@@ -3,6 +3,7 @@ package Controleur;
 import Metier.*;
 import Dao.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -70,5 +71,22 @@ public class Controleur {
         }
         return article;
     }
+    
+    public static ArrayList<Client> getClientByName(String string){
+    	ArrayList<Client> clients = new ArrayList<>();
+    	for(Client cl : Boutique.getInstance().clients){
+            if(cl.getNom().equals(string)){
+                clients.add(cl);
+            }
+        }
+    	return clients;	
+    }
+    
+    public static void deleteClient(Client client) {
+    	ClientDAO clientDAO = new ClientDAO(DbConnector.getDbConnector());
+    	Boutique.getInstance().clients.remove(client);
+    	clientDAO.delete(client);
+    }
+    
     
 }
