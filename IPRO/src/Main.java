@@ -29,8 +29,10 @@ public class Main extends Application {
         maboutique.ajouterClient(lineal);
         maboutique.ajouterClient(new Client("toast","theo","1 rue de la resistance"));
         maboutique.ajouterClient(new Client("oropo","emilio","1 square de la resistance"));
-        maboutique.ajouterArticle(new Stylo("monstylo","carrouf","moncar",1.0,2.0, Stylo.Couleur.BLEU),4);
+        Stylo monstylo = new Stylo("monstylo","carrouf","moncar",1.0,2.0, Stylo.Couleur.BLEU);
+        maboutique.ajouterArticle(monstylo,4);
         Commande macommande = new Commande(lineal,4,0);
+        macommande.addSellable(monstylo,2);
         maboutique.ajouterCommande(macommande);
         maboutique.setCA(100204);
         maboutique.setCoutFonctionnement(1004);
