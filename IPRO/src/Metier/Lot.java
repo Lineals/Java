@@ -74,7 +74,7 @@ public class Lot implements Sellable {
 
     @Override
     public double getPrice() {
-        return prix;
+        return this.calculerPrix();
     }
 
     @Override
