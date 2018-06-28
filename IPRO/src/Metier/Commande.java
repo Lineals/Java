@@ -108,6 +108,10 @@ public class Commande {
         this.lignes = lignes;
     }
 
+    public void setFraisDePort(double FraisDePorts){
+        fraisDePort=fraisDePort;
+    }
+
     public double getTauxReduc() {
         return tauxReduc;
     }
@@ -130,6 +134,7 @@ public class Commande {
 
         return prixT-(prixT*tauxReduc)+getFraisDePort();
     }
+
 
     public Boolean getEstFinalisee() {
         return estFinalisee;
@@ -154,6 +159,7 @@ public class Commande {
     public void setClient(Client client) {
         this.client = client;
     }
+
 
     @Override
     public String toString() {
