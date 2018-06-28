@@ -143,6 +143,10 @@ public class Commande {
     	this.lignes.add(new Ligne(Qte, sell));
     }
 
+    public void removeLigne(Ligne ligne){
+        this.lignes.remove(ligne);
+    }
+
     public Client getClient() {
         return client;
     }
@@ -192,6 +196,9 @@ public class Commande {
         
         public Sellable getSell() {
         	return this.article;
+        }
+        public Sellable getArticle() {
+            return this.article;
         }
 
         @Override
