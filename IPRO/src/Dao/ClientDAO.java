@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.sun.corba.se.spi.orbutil.fsm.Guard.Result;
 import com.sun.org.glassfish.external.probe.provider.annotations.ProbeParam;
 
 import Controleur.Controleur;
@@ -51,7 +52,7 @@ public class ClientDAO extends DAO<Client>{
 			preparedStatement.setString(2, objet.getNom());
 			preparedStatement.setString(3, objet.getPrenom());
 			preparedStatement.setString(4, objet.getAdresse());
-			preparedStatement.executeQuery();
+			preparedStatement.executeUpdate();
 			result = true;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -67,7 +68,7 @@ public class ClientDAO extends DAO<Client>{
 		try {
 			preparedStatement = this.connection.prepareStatement(query);
 			preparedStatement.setInt(1, objet.getId());
-			preparedStatement.executeQuery();
+			preparedStatement.executeUpdate();
 			result = true;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -77,8 +78,10 @@ public class ClientDAO extends DAO<Client>{
 
 	@Override
 	public boolean update(Client objet) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean result = false;
+		result = delete(objet);
+		result = create(objet);
+		return result;
 	}
 
 	public Client find(int id) {

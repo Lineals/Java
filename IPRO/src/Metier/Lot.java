@@ -66,13 +66,6 @@ public class Lot implements Sellable {
     }
 
     /**
-     *
-     */
-    public String getReference() {
-        return reference;
-    }
-
-    /**
      * @param ref
      */
     public void setReference(String ref) {
@@ -97,5 +90,17 @@ public class Lot implements Sellable {
     @Override
     public String getBrand() {
         return null;
+    }
+    
+    public int getNum() {
+    	return this.nombre;
+    }
+    
+    public double getTaux() {
+    	return this.pourcent;
+    }
+    
+    public Article getArticle() {
+    	return this.article;
     }
 }

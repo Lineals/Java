@@ -19,17 +19,54 @@ public class ArticleDAO extends DAO<Article>{
 
 	@Override
 	public boolean create(Article objet) {
-		return false;
+		Boolean result = false;
+		String query = "INSERT INTO article VALUES (?, ?, ?, ?, ?, ?, ?)";
+		PreparedStatement preparedStatement;
+		try {
+			preparedStatement = this.connection.prepareStatement(query);
+			preparedStatement.setString(1, objet.getRef());
+			preparedStatement.setString(2, objet.getName());
+			preparedStatement.setString(3, objet.getBrand());
+			preparedStatement.setDouble(4, objet.getCoutObtention());
+			preparedStatement.setDouble(5, objet.getPrice());
+			if (objet instanceof Stylo) {
+				System.out.println(((Stylo) objet).getColor());
+				preparedStatement.setString(6, ((Stylo) objet).getColor().toString());
+				preparedStatement.setNull(7, java.sql.Types.NULL);
+			} else {
+				preparedStatement.setNull(6, java.sql.Types.NULL);
+				preparedStatement.setDouble(7, ((Papier) objet).getPoids());
+			}
+			preparedStatement.executeUpdate();
+			result = true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 
 	@Override
 	public boolean delete(Article objet) {
-		return false;
+		Boolean result = false;
+		String query = "DELETE FROM article WHERE refarticle = ?";
+		PreparedStatement preparedStatement;
+		try {
+			preparedStatement = this.connection.prepareStatement(query);
+			preparedStatement.setString(1, objet.getRef());
+			preparedStatement.executeUpdate();
+			result = true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 
 	@Override
 	public boolean update(Article objet) {
-		return false;
+		boolean result = false;
+		result = delete(objet);
+		result = create(objet);
+		return result;
 	}
 
 	public Article find(String ref) {
