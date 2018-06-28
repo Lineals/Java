@@ -64,6 +64,11 @@ public class Boutique {
             this.stock.put(article,this.stock.get(article)+delta);
         }
     }
+    public void retirerStock(Sellable article){
+        if(this.stock.containsKey(article)){
+            this.stock.remove(article);
+        }
+    }
 
     /**
      * permet d'ajouter un article ou de définir le nombre d'occurences d'un article déjà existant
@@ -72,12 +77,14 @@ public class Boutique {
      */
     public void ajouterArticle(Sellable article, int quantite){
         this.stock.put(article,quantite);
+/*
         new StockDAO(DbConnector.getDbConnector()).create(article, quantite);
+*/
     }
     public void ajouterClient(Client client){
         if(!this.clients.contains(client)){
             this.clients.add(client);
-            new ClientDAO(DbConnector.getDbConnector()).create(client);
+/*            new ClientDAO(DbConnector.getDbConnector()).create(client);*/
         }
     }
     public ArrayList<Client> getClients(){

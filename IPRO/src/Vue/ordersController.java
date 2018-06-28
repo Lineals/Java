@@ -1,6 +1,7 @@
 package Vue;
 
 import Controleur.Boutique;
+import Controleur.Controleur;
 import Metier.Client;
 import Metier.Commande;
 import javafx.beans.value.ChangeListener;
@@ -15,8 +16,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Popup;
 import java.net.URL;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 /**
  * Controller class for the second vista.
@@ -55,15 +55,7 @@ public class ordersController implements Initializable {
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        id.setCellValueFactory(new PropertyValueFactory<Commande, String>("id"));
-        client.setCellValueFactory(new PropertyValueFactory<Commande, String>("client"));
-        port.setCellValueFactory(new PropertyValueFactory<Commande, String>("prenom"));
-        discount.setCellValueFactory(new PropertyValueFactory<Commande, String>("tauxreduc"));
-        price.setCellValueFactory(new PropertyValueFactory<Commande, String>("prixTotal"));
-        finalised.setCellValueFactory(new PropertyValueFactory<Commande, String>("estFinalisee"));
-        tableView.getItems().setAll(parseOrderList());
-
-
+        initTableView(parseOrderList());
         action.getItems().setAll("SearchById", "SearchByClient", "Add");
         System.out.println("test");
 
@@ -86,8 +78,24 @@ public class ordersController implements Initializable {
                 }
             }
         });
-
     }
+    private void initTableView(List<Commande> tab){
+        id.setCellValueFactory(new PropertyValueFactory<Commande, String>("id"));
+        client.setCellValueFactory(new PropertyValueFactory<Commande, String>("client"));
+        port.setCellValueFactory(new PropertyValueFactory<Commande, String>("prenom"));
+        discount.setCellValueFactory(new PropertyValueFactory<Commande, String>("tauxreduc"));
+        price.setCellValueFactory(new PropertyValueFactory<Commande, String>("prixTotal"));
+        finalised.setCellValueFactory(new PropertyValueFactory<Commande, String>("estFinalisee"));
+        tableView.getItems().setAll(tab);
+    }
+    @FXML
+    void searchId(){
+        List<Commande> tab = new ArrayList<>();
+        tab.add(Controleur.getCommandeById(Integer.parseInt(txt_field.getText())));
+        initTableView(tab);
+    }
+    @FXML
+    void searchClient(){}
 
 
 }
