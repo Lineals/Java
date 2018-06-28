@@ -64,7 +64,7 @@ public class Controleur {
     public static Sellable getArticleByReference(String ref){
     	Sellable article = null;
         for(Sellable art : Boutique.getInstance().stock.keySet()){
-            if(art.getRef()==ref){
+            if(art.getRef().equals(ref)){
                 article = art;
             }
         }

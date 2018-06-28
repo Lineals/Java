@@ -111,11 +111,7 @@ public class CommandeDAO extends DAO<Commande>{
 			ResultSet rSet = preparedStatement.executeQuery();
 			while (rSet.next()) {
 				String refsellable;
-				if(rSet.getString("refart") != null) {
-					refsellable = rSet.getString("refart");
-				} else {
-					refsellable = rSet.getString("reflot");
-				}
+				refsellable = rSet.getString("refart");
 				commande.addSellable(Controleur.getArticleByReference(refsellable),
 									 rSet.getInt("qte"));
 			}
