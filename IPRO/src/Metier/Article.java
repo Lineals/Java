@@ -78,15 +78,15 @@ public abstract class Article implements Sellable {
     public void setMarque(String marque) {
         this.marque = marque;
     }
+    
 
     /**
-     * Renvoi le coût d'obtention del'article
-     * @return coutObtention
+     * Renvoi le co�t d'obtention de l'article
      */
-    public double getCoutObtention() {
-        return coutObtention;
+    public double getCost() {
+    	return this.coutObtention;
     }
-
+    
     /**
      * Nouveau coût d'obtention de l'article
      * @param coutObtention
@@ -94,7 +94,7 @@ public abstract class Article implements Sellable {
     public void setCoutObtention(double coutObtention) {
         this.coutObtention = coutObtention;
     }
-
+    
     @Override
     public double getPrice() {
         return prix;
