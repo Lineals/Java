@@ -82,8 +82,14 @@ public class Commande {
      * @return
      */
     public double calculerPrix() {
-        // TODO implement here
-        return 0.0d;
+        double prix = 0;
+        for( Ligne ligne : lignes)
+        {
+            prix+=ligne.prix;
+        }
+        prix-=prix*tauxReduc;
+        prix+=fraisDePort;
+        return prix;
     }
 
     public Integer getId() {
