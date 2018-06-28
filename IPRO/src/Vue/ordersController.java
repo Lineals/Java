@@ -8,9 +8,13 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Popup;
+import sun.applet.Main;
 
 import java.net.URL;
 import java.util.List;
@@ -61,17 +65,10 @@ public class ordersController implements Initializable {
         finalised.setCellValueFactory(new PropertyValueFactory<Commande, String>("estFinalisee"));
         tableView.getItems().setAll(parseOrderList());
 
+
         action.getItems().setAll("SearchById", "SearchByClient", "Add");
         System.out.println("test");
-        // bind the selected fruit label to the selected fruit in the combo box.
 
-
-/*
-        selectedAction.textProperty().bind(action.getSelectionModel().selectedItemProperty());
-*/
-
-
-        // listen for changes to the fruit combo box selection and update the displayed fruit image accordingly.
         action.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override public void changed(ObservableValue<? extends String> selected, String oldAction, String newAction) {
                 txt_field.setVisible(true);
@@ -79,18 +76,20 @@ public class ordersController implements Initializable {
                     switch(oldAction) {
                         case "SearchById": btn_id.setVisible(false); break;
                         case "SearchByClient": btn_client.setVisible(false); break;
-                        case "Add": btn_add.setVisible(false); break;
+                        case "Add":VistaNavigator.loadVista(VistaNavigator.CREATEORDER); break;
                     }
                 }
                 if (newAction != null) {
                     switch(newAction) {
                         case "SearchById": btn_id.setVisible(true); break;
                         case "SearchByClient": btn_client.setVisible(true); break;
-                        case "Add": btn_add.setVisible(true); break;
+                        case "Add":VistaNavigator.loadVista(VistaNavigator.CREATEORDER); break;
                     }
                 }
             }
         });
+
     }
+
 
 }

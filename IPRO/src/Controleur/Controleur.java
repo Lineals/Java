@@ -26,7 +26,7 @@ public class Controleur {
     }
     public static String afficherStock(){
         String res = "";
-        HashMap<Article,Integer> stock= Boutique.getInstance().stock;
+        HashMap<Sellable,Integer> stock= Boutique.getInstance().stock;
         Iterator it =  stock.entrySet().iterator();
         while (it.hasNext()){
             Map.Entry pair = (Map.Entry)it.next();
@@ -61,9 +61,9 @@ public class Controleur {
         }
         return commande;
     }
-    public static Article getArticleByReference(String ref){
-    	Article article = null;
-        for(Article art : Boutique.getInstance().stock.keySet()){
+    public static Sellable getArticleByReference(String ref){
+    	Sellable article = null;
+        for(Sellable art : Boutique.getInstance().stock.keySet()){
             if(art.getRef()==ref){
                 article = art;
             }

@@ -88,7 +88,6 @@ public class Ihm extends Application {
 
         // Add Name Text Field
         ComboBox<Client> nameField = new ComboBox<Client>();
-        nameField.getItems().addAll(maboutique.clients);
         nameField.setPrefHeight(40);
         gridPane.add(nameField, 1,1);
 
@@ -120,6 +119,16 @@ public class Ihm extends Application {
         GridPane.setHalignment(submitButton, HPos.CENTER);
         GridPane.setMargin(submitButton, new Insets(20, 0,20,0));
 
+        //add New Client Button
+        Button btn_newClient = new Button("Nouveau Client");
+        btn_newClient.setPrefHeight(40);
+        btn_newClient.setDefaultButton(true);
+        btn_newClient.setPrefWidth(100);
+        gridPane.add(btn_newClient,1,4,2,1);
+        GridPane.setHalignment(btn_newClient,HPos.CENTER);
+        GridPane.setMargin(btn_newClient,new Insets(20,0,20,0));
+
+
         submitButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -137,6 +146,28 @@ public class Ihm extends Application {
                 }
 
                 showAlert(Alert.AlertType.CONFIRMATION, gridPane.getScene().getWindow(), "Registration Successful!", "Welcome " + nameField.getSelectionModel());
+            }
+        });
+        btn_newClient.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Label secondLabel = new Label("I'm a Label on new Window");
+
+
+                Scene secondScene = new Scene(gridPane, 800, 500);
+                StackPane secondaryLayout = new StackPane();
+
+
+                // New window (Stage)
+                Stage newWindow = new Stage();
+                newWindow.setTitle("Second Stage");
+                newWindow.setScene(secondScene);
+
+                // Set position of second window, related to primary window.
+                newWindow.setX(200);
+                newWindow.setY(100);
+
+                newWindow.show();
             }
         });
     }

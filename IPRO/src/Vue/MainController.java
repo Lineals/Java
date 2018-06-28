@@ -22,6 +22,11 @@ public class MainController {
     public void setVista(Node node) {
         vistaHolder.getChildren().setAll(node);
     }
+
+    public StackPane getVistaHolder() {
+        return vistaHolder;
+    }
+
     @FXML
     void dashBoard(ActionEvent event) {
 

@@ -37,7 +37,7 @@ public class Boutique {
      * 
      */
 
-    public HashMap<Article,Integer> stock;
+    public HashMap<Sellable,Integer> stock;
 
 
     /**
@@ -56,7 +56,7 @@ public class Boutique {
     }
     public static Boutique getInstance(){return INSTANCE;}
 
-    public void modifierStock(Article article,int delta){
+    public void modifierStock(Sellable article,int delta){
         if(this.stock.containsKey(article)){
             this.stock.put(article,this.stock.get(article)+delta);
         }
@@ -67,7 +67,7 @@ public class Boutique {
      * @param article l'article
      * @param quantite la quantite
      */
-    public void ajouterArticle(Article article, int quantite){
+    public void ajouterArticle(Sellable article, int quantite){
         this.stock.put(article,quantite);
     }
     public void ajouterClient(Client client){
@@ -79,7 +79,7 @@ public class Boutique {
         return clients;
     }
 
-    public HashMap<Article, Integer> getStock() {
+    public HashMap<Sellable, Integer> getStock() {
         return stock;
     }
 

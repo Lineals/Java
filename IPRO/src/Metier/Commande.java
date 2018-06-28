@@ -82,8 +82,14 @@ public class Commande {
      * @return
      */
     public double calculerPrix() {
-        // TODO implement here
-        return 0.0d;
+        double prix = 0;
+        for( Ligne ligne : lignes)
+        {
+            prix+=ligne.prix;
+        }
+        prix-=prix*tauxReduc;
+        prix+=fraisDePort;
+        return prix;
     }
 
     public Integer getId() {
@@ -147,16 +153,7 @@ public class Commande {
 
     @Override
     public String toString() {
-        return "Commande{" +
-                "id=" + id +
-                ", date=" + date +
-                ", lignes=" + lignes +
-                ", tauxReduc=" + tauxReduc +
-                ", fraisDePort=" + fraisDePort +
-                ", prixTotal=" + prixTotal +
-                ", estFinalisee=" + estFinalisee +
-                ", client=" + client +
-                '}';
+        return client + " : " + prixTotal + " €";
     }
 
     public class Ligne {
@@ -199,11 +196,7 @@ public class Commande {
 
         @Override
         public String toString() {
-            return "Ligne{" +
-                    "quantite=" + quantite +
-                    ", article=" + article +
-                    ", prix=" + prix +
-                    '}';
+            return article +    "x" + quantite ;
         }
     }
 }
