@@ -14,8 +14,6 @@ import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Popup;
-import sun.applet.Main;
-
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;

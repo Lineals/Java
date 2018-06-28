@@ -35,7 +35,7 @@ public class CommandeDAO extends DAO<Commande>{
 			preparedStatement.setDouble(5, objet.getPrixTotal());
 			preparedStatement.setBoolean(6, objet.getEstFinalisee());
 			preparedStatement.setInt(7, objet.getClient().getId());
-			preparedStatement.executeQuery();
+			preparedStatement.executeUpdate();
 			
 			for (Ligne ligne: objet.getArticles()) {
 				preparedStatement = this.connection.prepareStatement(queryLigne);

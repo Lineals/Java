@@ -5,10 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
-import com.sun.corba.se.spi.orbutil.fsm.Guard.Result;
-import com.sun.org.glassfish.external.probe.provider.annotations.ProbeParam;
-
 import Controleur.Controleur;
 import Metier.Client;
 import Metier.Commande;

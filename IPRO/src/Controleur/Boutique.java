@@ -5,8 +5,6 @@ import Dao.*;
 import java.sql.Connection;
 import java.util.*;
 
-import com.sun.tracing.dtrace.DependencyClass;
-
 /**
  * 
  */
@@ -97,6 +95,7 @@ public class Boutique {
     public void ajouterCommande(Commande commande){
         if(!this.commandes.contains(commande)){
             this.commandes.add(commande);
+            new CommandeDAO(DbConnector.getDbConnector()).create(commande);
         }
     }
 

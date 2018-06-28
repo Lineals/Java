@@ -28,7 +28,7 @@ public class ArticleDAO extends DAO<Sellable>{
 			preparedStatement.setString(1, objet.getRef());
 			preparedStatement.setString(2, objet.getName());
 			preparedStatement.setString(3, objet.getBrand());
-			preparedStatement.setDouble(4, ((Article) objet).getCoutObtention());
+			preparedStatement.setDouble(4, ((Article) objet).getCost());
 			preparedStatement.setDouble(5, objet.getPrice());
 			if (objet instanceof Stylo) {
 				System.out.println(((Stylo) objet).getColor());

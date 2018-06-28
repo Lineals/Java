@@ -25,15 +25,7 @@ public class Main extends Application {
     public void start(Stage stage) throws Exception{
         stage.setTitle("Vista Viewer");
         maboutique = Boutique.getInstance();
-        Client lineal = new Client("lineal","remy","1 avenue de la resistance");
-        maboutique.ajouterClient(lineal);
-        maboutique.ajouterClient(new Client("toast","theo","1 rue de la resistance"));
-        maboutique.ajouterClient(new Client("oropo","emilio","1 square de la resistance"));
-        Stylo monstylo = new Stylo("monstylo","carrouf","moncar",1.0,2.0, Stylo.Couleur.BLEU);
-        maboutique.ajouterArticle(monstylo,4);
-        Commande macommande = new Commande(lineal,4,0);
-        macommande.addSellable(monstylo,2);
-        maboutique.ajouterCommande(macommande);
+        maboutique.feedAll();
         maboutique.setCA(100204);
         maboutique.setCoutFonctionnement(1004);
         stage.setScene(
