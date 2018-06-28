@@ -115,11 +115,6 @@ public class Client {
 
     @Override
     public String toString() {
-        return "client{" +
-                "id=" + id +
-                ", nom='" + nom + '\'' +
-                ", prenom='" + prenom + '\'' +
-                ", adresse='" + adresse + '\'' +
-                '}';
+        return nom + " "+  prenom;
     }
 }
