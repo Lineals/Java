@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import Controleur.Controleur;
+import Metier.Article;
 import Metier.Lot;
 
 public class LotDAO extends DAO<Lot> {
@@ -31,7 +33,7 @@ public class LotDAO extends DAO<Lot> {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return false;
+		return result;
 	}
 
 	@Override
@@ -67,8 +69,13 @@ public class LotDAO extends DAO<Lot> {
 			preparedStatement = this.connection.prepareStatement(query);
 			ResultSet rSet = preparedStatement.executeQuery();
 			while(rSet.next()) {
-				
+				arrayList.add(new Lot(rSet.getString("reflot"), 
+									rSet.getInt("qte"), 
+									rSet.getDouble("tauxreduc"), 
+									(Article) Controleur.getArticleByReference(rSet.getString("refarticle"))));
 			}
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		return arrayList;
 	}
