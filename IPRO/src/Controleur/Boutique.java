@@ -5,12 +5,13 @@ import Dao.*;
 import java.sql.Connection;
 import java.util.*;
 
+import com.sun.tracing.dtrace.DependencyClass;
+
 /**
  * 
  */
 public class Boutique {
-    /** Instance unique pré-initialisée */
-    private static Boutique INSTANCE = new Boutique();
+    private static Boutique INSTANCE = null;
     /**
      * 
      */
@@ -52,9 +53,13 @@ public class Boutique {
         this.coutFonctionnement=0;
         this.clients=new ArrayList<>();
         this.commandes=new ArrayList<>();
-        this.feedAll();
     }
-    public static Boutique getInstance(){return INSTANCE;}
+    public static Boutique getInstance(){
+    	if(INSTANCE == null) {
+    		INSTANCE = new Boutique();
+    	}
+    	return INSTANCE;
+	}
 
     public void modifierStock(Sellable article,int delta){
         if(this.stock.containsKey(article)){
@@ -69,10 +74,12 @@ public class Boutique {
      */
     public void ajouterArticle(Sellable article, int quantite){
         this.stock.put(article,quantite);
+        new StockDAO(DbConnector.getDbConnector()).create(article, quantite);
     }
     public void ajouterClient(Client client){
         if(!this.clients.contains(client)){
             this.clients.add(client);
+            new ClientDAO(DbConnector.getDbConnector()).create(client);
         }
     }
     public ArrayList<Client> getClients(){
@@ -117,6 +124,16 @@ public class Boutique {
     	Connection connection = DbConnector.getDbConnector();
     	this.clients = new ClientDAO(connection).findAll();
     	this.commandes = new CommandeDAO(connection).findAll();
+    	ArrayList<Sellable> arrayList = new ArticleDAO(connection).findAll();
+    	for (Sellable sellable: arrayList) {
+    		this.stock.put(sellable, 0);
+    	}
+    	arrayList = new LotDAO(connection).findAll();
+    	System.out.println(this.stock);
+		for (Sellable sellable: arrayList) {
+			this.stock.put(sellable, 0);
+		}
+    	this.stock = new StockDAO(connection).updateStock(this.stock);
     }
 
 

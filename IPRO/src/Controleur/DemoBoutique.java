@@ -5,8 +5,11 @@ import Metier.Client;
 import Metier.Stylo;
 
 public class DemoBoutique {
+    
     public static void main(String[] args) {
-        Boutique maboutique = Boutique.getInstance();
+    	Boutique maboutique = Boutique.getInstance();
+    	maboutique.feedAll();
+    	System.out.println(maboutique);
         maboutique.ajouterClient(new Client("lineal","remy","1 avenue de la resistance"));
         maboutique.ajouterClient(new Client("toast","theo","1 rue de la resistance"));
         maboutique.ajouterClient(new Client("oropo","emilio","1 square de la resistance"));

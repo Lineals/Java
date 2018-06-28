@@ -13,7 +13,7 @@ public class Stylo extends Article {
      */
     public Stylo(String nom, String marque, String reference, double coutObtention, double prix, Couleur couleur) {
     	super(nom, marque, reference, coutObtention, prix);
-    	this.color = color;
+    	this.color = couleur;
     }
     
 
@@ -29,5 +29,11 @@ public class Stylo extends Article {
     public Couleur getColor() {
 		return this.color;
 	}
+    
+    @Override
+    public String toString() {
+    	// TODO Auto-generated method stub
+    	return "Stylo " + this.color; 
+    }
 
 }

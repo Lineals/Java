@@ -7,8 +7,6 @@ import java.sql.SQLException;
 import java.sql.Date;
 import java.util.ArrayList;
 
-import com.sun.corba.se.spi.ior.ObjectKeyTemplate;
-
 import Controleur.Controleur;
 import Metier.Commande;
 import Metier.Commande.Ligne;
@@ -50,7 +48,7 @@ public class CommandeDAO extends DAO<Commande>{
 					preparedStatement.setString(3, ligne.getSell().getRef());
 				}
 				preparedStatement.setInt(4, ligne.getQuantite());
-				preparedStatement.executeQuery();
+				preparedStatement.executeUpdate();
 			}
 			result = true;
 		} catch (SQLException e) {
@@ -68,7 +66,7 @@ public class CommandeDAO extends DAO<Commande>{
 		try {
 			preparedStatement = this.connection.prepareStatement(query);
 			preparedStatement.setInt(1, objet.getId());
-			preparedStatement.executeQuery();
+			preparedStatement.executeUpdate();
 			result = true;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -79,42 +77,8 @@ public class CommandeDAO extends DAO<Commande>{
 	@Override
 	public boolean update(Commande objet) {
 		Boolean result = false;
-		String query = "UPDATE commande SET tauxreduc = ?, fraisport = ?, prix = ?, fini = ?, idclient = ? WHERE idcommande = ?";
-		String queryDel = "DELETE FROM ligne WHERE idcommande = ?";
-		String queryLigne = "INSERT INTO ligne VALUES (?, ?, ?, ?)";
-		PreparedStatement preparedStatement;
-		try {
-			preparedStatement = this.connection.prepareStatement(query);
-			preparedStatement.setDouble(1, objet.getTauxReduc());
-			preparedStatement.setDouble(2, objet.getFraisDePort());
-			preparedStatement.setDouble(3, objet.getPrixTotal());
-			preparedStatement.setBoolean(4, objet.getEstFinalisee());
-			preparedStatement.setInt(5, objet.getClient().getId());
-			preparedStatement.setInt(6, objet.getId());
-			preparedStatement.executeQuery();
-			
-			preparedStatement = this.connection.prepareStatement(queryDel);
-			preparedStatement.setInt(1, objet.getId());
-			preparedStatement.executeQuery();
-			
-			for (Ligne ligne: objet.getArticles()) {
-				preparedStatement = this.connection.prepareStatement(queryLigne);
-				preparedStatement.setInt(1, objet.getId());
-				if(ligne.getSell() instanceof Lot) {
-					preparedStatement.setString(2, ligne.getSell().getRef());
-					preparedStatement.setNull(3, java.sql.Types.NULL);
-				} else {
-					preparedStatement.setNull(2, java.sql.Types.NULL);
-					preparedStatement.setString(3, ligne.getSell().getRef());
-				}
-				preparedStatement.setInt(4, ligne.getQuantite());
-				preparedStatement.executeQuery();
-			}
-			result = true;
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		result = delete(objet);
+		result = create(objet);
 		return result;
 	}
 
