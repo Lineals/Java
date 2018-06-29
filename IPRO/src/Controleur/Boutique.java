@@ -1,5 +1,6 @@
 package Controleur;
 import Metier.*;
+import Metier.Commande.Ligne;
 import javafx.scene.control.Control;
 import Dao.*;
 
@@ -20,17 +21,17 @@ public class Boutique {
      * Coût de fonctionnement de la voutique
      * 
      */
-    private float coutFonctionnement;
+    private double coutFonctionnement;
 
     /**
      * Chiffre affaire
      */
-    private float CA;
+    private double CA;
 
     /**
      * Benefice
      */
-    private float benefice;
+    private double benefice;
 
 
     /**
@@ -122,7 +123,7 @@ public class Boutique {
      */
     public void ajouterClient(Client client){
     	ClientDAO clientDAO = new ClientDAO(DbConnector.getDbConnector());
-        if(!this.clients.contains(client)){
+        if(!this.clients.contains(Controleur.getClientById(client.getId()))){
             this.clients.add(client);
             clientDAO.create(client);
         } else {
@@ -186,13 +187,14 @@ public class Boutique {
             this.commandes.add(commande);
             new CommandeDAO(DbConnector.getDbConnector()).create(commande);
         }
+        updateCA();
     }
     
     /**
      * Getter Cout de fonctionnement
-     * @return float coutFonctionnement
+     * @return double coutFonctionnement
      */
-    public float getCoutFonctionnement() {
+    public double getCoutFonctionnement() {
         return coutFonctionnement;
     }
 
@@ -208,7 +210,7 @@ public class Boutique {
      * get chiffre affaire
      * @return CA chiffre affaire
      */
-    public float getCA() {
+    public double getCA() {
         return CA;
     }
     
@@ -223,7 +225,7 @@ public class Boutique {
      * get benefice (chiffre affaire - coût fonctionnement)
      * @return benefice
      */
-    public float getBenefice() {
+    public double getBenefice() {
         return this.CA-this.coutFonctionnement;
     }
     
@@ -243,6 +245,21 @@ public class Boutique {
 		}
     	this.stock = new StockDAO(connection).updateStock(this.stock);
     	this.commandes = new CommandeDAO(connection).findAll();
+    	updateCA();
+    }
+    
+    public void updateCA() {
+    	double CA = 0, cost = 0;
+    	for (Commande commande : commandes) {
+    		if (commande.getEstFinalisee()) {
+    			CA += commande.getPrixTotal();
+    			for (Ligne ligne: commande.getArticles()) {
+    				cost += ligne.getArticle().getCost();
+    			}
+    		}
+		}
+    	this.CA = CA;
+    	this.coutFonctionnement = cost;
     }
 
 

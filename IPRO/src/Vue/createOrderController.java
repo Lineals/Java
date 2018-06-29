@@ -120,7 +120,7 @@ public class createOrderController implements Initializable {
         		txt_fdp.setEditable(false);
         		txt_quantity.setEditable(false);
 //        		btn_save.setVisible(false);
-        		btn_add_order.setVisible(false);
+//        		btn_add_order.setVisible(false);
         	}
         	loadCommande(this.commande);
         }
@@ -180,8 +180,8 @@ public class createOrderController implements Initializable {
     }
     @FXML
     void saveOrder(){
-        float reduc = Float.valueOf(txt_taux_reduc.getText());
-        float fdp = Float.valueOf(txt_fdp.getText());
+    	Double reduc = Double.valueOf(txt_taux_reduc.getText());
+    	Double fdp = Double.valueOf(txt_fdp.getText());
         commande.setTauxReduc(reduc);
         commande.setFraisDePort(fdp);
         commande.setArticles(new ArrayList<>(parseLineList()));

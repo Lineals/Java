@@ -71,6 +71,7 @@ public class ordersController implements Initializable {
 				}
 			}
 		});
+        
 
         action.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override public void changed(ObservableValue<? extends String> selected, String oldAction, String newAction) {
@@ -95,8 +96,8 @@ public class ordersController implements Initializable {
     private void initTableView(List<Commande> tab){
         id.setCellValueFactory(new PropertyValueFactory<Commande, String>("id"));
         client.setCellValueFactory(new PropertyValueFactory<Commande, String>("client"));
-        port.setCellValueFactory(new PropertyValueFactory<Commande, String>("prenom"));
-        discount.setCellValueFactory(new PropertyValueFactory<Commande, String>("tauxreduc"));
+        port.setCellValueFactory(new PropertyValueFactory<Commande, String>("fraisDePort"));
+        discount.setCellValueFactory(new PropertyValueFactory<Commande, String>("tauxReduc"));
         price.setCellValueFactory(new PropertyValueFactory<Commande, String>("prixTotal"));
         finalised.setCellValueFactory(new PropertyValueFactory<Commande, String>("estFinalisee"));
         tableView.getItems().setAll(tab);

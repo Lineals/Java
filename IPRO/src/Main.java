@@ -26,8 +26,6 @@ public class Main extends Application {
         stage.setTitle("IPRO Boutique");
         maboutique = Boutique.getInstance();
         maboutique.feedAll();
-        maboutique.setCA(1404);
-        maboutique.setCoutFonctionnement(108);
         stage.setScene(
             createScene(
                 loadMainPane()

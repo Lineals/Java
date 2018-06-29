@@ -8,6 +8,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
@@ -15,6 +16,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 
 import java.net.URL;
@@ -88,6 +90,21 @@ public class stockController implements Initializable {
         cbb_article.setVisible(true);
         cbb_article.getSelectionModel().selectFirst();
         txt_poids.setVisible(false);
+        
+        tableView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent event) {
+				if (event.getClickCount() == 2) {
+					Sellable sellable = Controleur.getArticleByReference(tableView.getSelectionModel().getSelectedItem().getKey());
+					loadSellable(sellable);
+					if (sellable instanceof Lot) {
+						lot();
+					} else { article(); }
+				}
+			}
+		});
+        
         cbb_article.setItems(FXCollections.observableArrayList(ValStylo,ValPapier));
         cbb_article.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override public void changed(ObservableValue<? extends String> selected, String oldString, String newString) {
