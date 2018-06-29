@@ -45,9 +45,12 @@ public class Main extends Application {
      */
     private Pane loadMainPane() throws IOException {
         FXMLLoader loader = new FXMLLoader();
-
+        System.out.println(Main.class.getResourceAsStream(
+                VistaNavigator.MAIN
+            ));
+        System.out.println(VistaNavigator.MAIN);
         Pane mainPane = (Pane) loader.load(
-            getClass().getResourceAsStream(
+            Main.class.getResourceAsStream(
                 VistaNavigator.MAIN
             )
         );
