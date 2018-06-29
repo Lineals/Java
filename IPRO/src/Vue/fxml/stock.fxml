@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+
+<StackPane fx:id="vista2" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Vue.stockController">
+  <children>
+    <Pane prefHeight="400.0" prefWidth="600.0">
+      <children>
+        <TableView fx:id="tableView" layoutX="70.0" layoutY="13.0" prefHeight="266.0" prefWidth="443.0">
+          <columns>
+            <TableColumn fx:id="ref" maxWidth="5000.0" minWidth="10.0" prefWidth="331.0" text="Reference" />
+            <TableColumn fx:id="quantite" prefWidth="111.0" text="Quantite" />
+          </columns>
+        </TableView>
+        <TextField fx:id="txt_marque" layoutX="222.0" layoutY="319.0" prefWidth="71.0" promptText="brand" />
+        <ToggleButton fx:id="article" layoutX="77.0" layoutY="285.0" mnemonicParsing="false" onAction="#article" prefWidth="58.0" text="Article" />
+        <ToggleButton fx:id="lot" layoutX="135.0" layoutY="285.0" mnemonicParsing="false" onAction="#lot" prefWidth="50.0" text="Lot" />
+        <ComboBox fx:id="cbb_article" layoutX="77.0" layoutY="319.0" promptText="Article">
+          <items>
+            <FXCollections fx:factory="observableArrayList">
+              <String fx:value="Item 1" />
+              <String fx:value="Item 2" />
+              <String fx:value="Item 3" />
+            </FXCollections>
+          </items>
+        </ComboBox>
+        <TextField fx:id="txt_prix" layoutX="224.0" layoutY="351.0" prefWidth="39.0" promptText="price" />
+        <TextField fx:id="txt_nom" layoutX="300.0" layoutY="319.0" prefWidth="71.0" promptText="name" />
+        <TextField fx:id="txt_poids" layoutX="276.0" layoutY="351.0" prefWidth="39.0" promptText="weight" />
+        <TextField fx:id="txt_ref" layoutX="165.0" layoutY="318.0" prefWidth="50.0" promptText="reference" />
+        <TextField fx:id="txt_cout" layoutX="165.0" layoutY="350.0" prefWidth="50.0" promptText="cost" />
+        <ComboBox fx:id="cbb_couleur" layoutX="277.0" layoutY="351.0" promptText="Couleur">
+          <items>
+            <FXCollections fx:factory="observableArrayList">
+              <String fx:value="Item 1" />
+              <String fx:value="Item 2" />
+              <String fx:value="Item 3" />
+            </FXCollections>
+          </items>
+        </ComboBox>
+        <ComboBox fx:id="cbb_lot" layoutX="77.0" layoutY="319.0" prefHeight="21.0" prefWidth="76.0" promptText="Article">
+          <items>
+            <FXCollections fx:factory="observableArrayList">
+              <String fx:value="Item 1" />
+              <String fx:value="Item 2" />
+              <String fx:value="Item 3" />
+            </FXCollections>
+          </items>
+        </ComboBox>
+        <TextField fx:id="txt_pourcent" layoutX="227.0" layoutY="319.0" prefWidth="58.0" promptText="pourcent" text="" />
+        <TextField fx:id="txt_nombre" layoutX="166.0" layoutY="350.0" prefWidth="58.0" promptText="nombre" text="" />
+        <TextField fx:id="txt_quantite" layoutX="362.0" layoutY="351.0" prefWidth="58.0" promptText="ammount" text="" />
+        <Button fx:id="btn_add" layoutX="431.0" layoutY="353.0" mnemonicParsing="false" onAction="#ajouterElem" text="Add" />
+        <Button layoutX="522.0" layoutY="32.0" mnemonicParsing="false" onAction="#change" text="Change" />
+      </children>
+    </Pane>
+  </children>
+</StackPane>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?scenebuilder-stylesheet modena.css?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.1" fx:controller="Vue.ordersController">
+   <children>
+      <Label layoutX="259.0" layoutY="14.0" text="Commandes" />
+      <TableView fx:id="tableView" layoutX="10.0" layoutY="90.0" prefHeight="298.0" prefWidth="578.0">
+        <columns>
+          <TableColumn fx:id="id" prefWidth="100.0" text="ID" />
+          <TableColumn fx:id="client" prefWidth="100.0" text="Client" />
+            <TableColumn fx:id="port" prefWidth="100.0" text="Port" />
+            <TableColumn fx:id="discount" prefWidth="100.0" text="Discount" />
+            <TableColumn fx:id="price" prefWidth="100.0" text="Price" />
+            <TableColumn fx:id="finalised" prefWidth="78.0" text="Finalised" />
+        </columns>
+      </TableView>
+      <ComboBox fx:id="action" layoutX="14.0" layoutY="58.0" prefWidth="150.0" promptText="Action" />
+      <TextField fx:id="txt_field" layoutX="202.0" layoutY="58.0" visible="false" />
+      <Button fx:id="btn_id" layoutX="366.0" layoutY="58.0" mnemonicParsing="false" onAction="#searchId" text="Search this id" visible="false" />
+      <Button fx:id="btn_client" layoutX="366.0" layoutY="58.0" mnemonicParsing="false" onAction="#searchClient" text="Search this client" visible="false" />
+   </children>
+</Pane>

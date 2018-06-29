@@ -1,6 +1,7 @@
 package Vue;
 
 import Controleur.Boutique;
+import Controleur.Controleur;
 import Metier.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -42,6 +43,8 @@ public class createOrderController implements Initializable {
     @FXML
     private Button btn_cancel_order;
     @FXML
+    private Button btn_save;
+    @FXML
     private TableColumn<Commande.Ligne, String> column_article;
     @FXML
     private TableColumn<Commande.Ligne, String> column_amount;
@@ -51,6 +54,10 @@ public class createOrderController implements Initializable {
     private ToggleButton creer;
     @FXML
     private ToggleButton modifier;
+    @FXML
+    private Button finalize;
+    @FXML
+    private Button delete;
 
     private Commande commande = new Commande(null,0,0);
     private Client client ;
@@ -74,7 +81,7 @@ public class createOrderController implements Initializable {
         ArrayList<Commande> Commandes = Boutique.getInstance().getCommandes();
         ArrayList<Commande> CommandesNonfinalises = new ArrayList<Commande>();
         for (Commande com : Commandes){
-            if(!com.getEstFinalisee()){CommandesNonfinalises.add(com);}
+            if(!com.getEstFinalisee()){CommandesNonfinalises.add(com); }
         }
         cbb_commande.setItems(FXCollections.observableArrayList(CommandesNonfinalises));
 
@@ -102,6 +109,21 @@ public class createOrderController implements Initializable {
         Set<Sellable> setSellables = Boutique.getInstance().getStock().keySet();
         ArrayList<Sellable> sellables = new ArrayList<>(setSellables);
         cbb_articles.setItems(FXCollections.observableArrayList(sellables));
+        
+        if(ordersController.getCommande() != null) {
+        	this.commande = ordersController.getCommande();
+        	if (!this.commande.getEstFinalisee()) {
+        		finalize.setVisible(true);
+        		delete.setVisible(true);
+        	} else {
+        		txt_taux_reduc.setEditable(false);
+        		txt_fdp.setEditable(false);
+        		txt_quantity.setEditable(false);
+//        		btn_save.setVisible(false);
+        		btn_add_order.setVisible(false);
+        	}
+        	loadCommande(this.commande);
+        }
 
 
     }
@@ -163,9 +185,7 @@ public class createOrderController implements Initializable {
         commande.setTauxReduc(reduc);
         commande.setFraisDePort(fdp);
         commande.setArticles(new ArrayList<>(parseLineList()));
-        if(creer.isSelected()){
-            Boutique.getInstance().ajouterCommande(commande);
-        }
+        Boutique.getInstance().ajouterCommande(commande);
         VistaNavigator.loadVista(VistaNavigator.ORDERS);
     }
     @FXML
@@ -178,19 +198,12 @@ public class createOrderController implements Initializable {
         if(commande!=null){
             commande.setEstFinalisee(true);
         }
-
+        VistaNavigator.loadVista(VistaNavigator.ORDERS);
     }
+    
     @FXML
-    void toggleCreer(){
-        modifier.setSelected(false);
-        cbb_commande.setVisible(false);
-        VistaNavigator.loadVista(VistaNavigator.CREATEORDER);
-    }
-    @FXML
-    void toggleModifier(){
-        creer.setSelected(false);
-        cbb_commande.setVisible(true);
-
+    void deleteOrder() {
+    	Controleur.deleteCommande(commande);
     }
 
 }

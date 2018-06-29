@@ -104,4 +104,15 @@ public class Lot implements Sellable {
     public Article getArticle() {
     	return this.article;
     }
+
+	@Override
+	public double getCost() {
+		return this.article.getCost() * this.nombre;
+	}
+	
+	@Override
+	public String toString() {
+		
+		return "Lot de " + this.article.getName() + " " + this.reference;
+	}
 }

@@ -62,11 +62,11 @@ public class Controleur {
         }
         return commande;
     }
-    public static Commande getCommandeByClientName(String name){
-    	Commande commande = null;
+    public static ArrayList<Commande> getCommandeByClientName(String name){
+    	ArrayList<Commande> commande = new ArrayList<>();
         for (Commande com : Boutique.getInstance().commandes){
             if(com.getClient().getNom().equals(name)){
-                commande = com;
+                commande.add(com);
             }
         }
         return commande;
@@ -95,6 +95,12 @@ public class Controleur {
     	ClientDAO clientDAO = new ClientDAO(DbConnector.getDbConnector());
     	Boutique.getInstance().clients.remove(client);
     	clientDAO.delete(client);
+    }
+    
+    public static void deleteCommande(Commande commande) {
+    	CommandeDAO commandeDAO = new CommandeDAO(DbConnector.getDbConnector());
+    	Boutique.getInstance().commandes.remove(commande);
+    	commandeDAO.delete(commande);
     }
     
     

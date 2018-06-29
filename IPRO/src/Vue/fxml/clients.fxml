@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 
-<StackPane fx:id="vista2" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Vue.clientsController">
+<StackPane fx:id="vista2" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Vue.clientsController">
   <children>
-    <Pane minHeight="-Infinity" prefHeight="166.0" prefWidth="657.0">
+    <Pane minHeight="-Infinity" prefHeight="400.0" prefWidth="600.0">
       <children>
         <TableView fx:id="tableView" layoutX="12.0" layoutY="106.0" prefHeight="286.0" prefWidth="574.0">
           <columns>
-            <TableColumn prefWidth="36.0" text="Id" fx:id="UserId" />
-            <TableColumn prefWidth="103.0" text="Nom" fx:id="UserLastName" />
-            <TableColumn minWidth="0.0" prefWidth="171.0" text="Prenom" fx:id="UserName" />
-            <TableColumn prefWidth="202.0" text="Adresse" fx:id="Address" />
+            <TableColumn fx:id="UserId" prefWidth="36.0" text="Id" />
+            <TableColumn fx:id="UserLastName" prefWidth="103.0" text="Nom" />
+            <TableColumn fx:id="UserName" minWidth="0.0" prefWidth="171.0" text="Prenom" />
+            <TableColumn fx:id="Address" prefWidth="202.0" text="Adresse" />
           </columns>
         </TableView>
         <ComboBox fx:id="action" layoutX="14.0" layoutY="72.0" prefWidth="150.0" promptText="Actions" />

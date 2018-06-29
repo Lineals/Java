@@ -11,7 +11,7 @@ public interface Sellable {
      * Renvoi le prix de l'article
      */
     double getPrice();
-
+    
     /**
      * Renvoi la rÃ©fÃ©rence de l'article
      */
@@ -27,4 +27,9 @@ public interface Sellable {
      */
     String getBrand();
 
+    /**
+     * Renvoi le coût de l'article
+     * @return Coût de l'article
+     */
+    double getCost();
 }

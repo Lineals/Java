@@ -25,5 +25,9 @@ public class Papier extends Article {
     public double getPoids() {
 		return this.poids;
 	}
+    
+    public String toString() {
+    	return "Papier " + this.getName() + " " + this .getPoids() + " " + this.getRef();
+    }
 
 }
