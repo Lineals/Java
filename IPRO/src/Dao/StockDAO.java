@@ -6,7 +6,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.ResourceBundle.Control;
+
 import Controleur.Controleur;
+import Metier.Lot;
 import Metier.Sellable;
 
 	public class StockDAO{
@@ -18,6 +21,7 @@ import Metier.Sellable;
 		
 		public HashMap<Sellable, Integer> updateStock(HashMap<Sellable, Integer> hm) {
 			String query = "SELECT * FROM stock";
+			String queryLot = "SELECT * FROM stocklot";
 			PreparedStatement preparedStatement;
 			try {
 				preparedStatement = this.connection.prepareStatement(query);
@@ -25,6 +29,12 @@ import Metier.Sellable;
 				while (resultSet.next()) {
 					hm.put(Controleur.getArticleByReference(resultSet.getString("refart"))
 							    ,resultSet.getInt("qte"));
+				}
+				preparedStatement = this.connection.prepareStatement(queryLot);
+				resultSet = preparedStatement.executeQuery();
+				while (resultSet.next()) {
+					hm.put(Controleur.getArticleByReference(resultSet.getString("reflot"))
+							,resultSet.getInt("qte"));
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -35,7 +45,10 @@ import Metier.Sellable;
 		
 		public boolean create(Sellable sellable, Integer qte) {
 			boolean result = false;
-			String query = "INSERT INTO stock values (?, ?)";
+			String query;
+			if (sellable instanceof Lot) {
+				query = "INSERT INTO stocklot values (?, ?)";
+			} else { query = "INSERT INTO stock values (?, ?)"; }
 			PreparedStatement preparedStatement;
 			try {
 				preparedStatement = this.connection.prepareStatement(query);
@@ -51,7 +64,10 @@ import Metier.Sellable;
 		
 		public boolean delete(Sellable sellable) {
 			boolean result = false;
-			String query = "DELETE FROM stock WHERE refart = ?";
+			String query;
+			if (sellable instanceof Lot) {
+				query = "DELETE FROM stocklot WHERE refart = ?";
+			} else { query = "DELETE FROM stock WHERE refart = ?"; }
 			PreparedStatement preparedStatement;
 			try {
 				preparedStatement = this.connection.prepareStatement(query);
