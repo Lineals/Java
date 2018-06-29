@@ -24,8 +24,8 @@
             <ComboBox fx:id="action" layoutX="14.0" layoutY="72.0" prefWidth="150.0" promptText="Actions" />
             <TextField fx:id="txt_field_id" layoutX="175.0" layoutY="72.0" visible="false" />
             <TextField fx:id="txt_field_name" layoutX="175.0" layoutY="72.0" visible="false" />
-            <Button fx:id="btn_search_id" layoutX="357.0" layoutY="72.0" mnemonicParsing="false" text="Search by ID" visible="false" />
-            <Button fx:id="btn_search_name" layoutX="357.0" layoutY="72.0" mnemonicParsing="false" text="Search by Name" visible="false" />
+            <Button fx:id="btn_search_id" layoutX="357.0" layoutY="72.0" mnemonicParsing="false" onAction="#searchById" text="Search by ID" visible="false" />
+            <Button fx:id="btn_search_name" layoutX="357.0" layoutY="72.0" mnemonicParsing="false" onAction="#searchByName" text="Search by Name" visible="false" />
             <Label layoutX="278.0" layoutY="14.0" text="Clients" />
          </children>
       </Pane>
