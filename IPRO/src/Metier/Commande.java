@@ -138,7 +138,7 @@ public class Commande {
             }
         }
 
-        return prixT-(prixT*tauxReduc)+getFraisDePort();
+        return prixT-(prixT*(tauxReduc/100))+fraisDePort;
     }
 
 
