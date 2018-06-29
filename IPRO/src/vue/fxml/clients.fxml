@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?scenebuilder-stylesheet modena.css?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 
-<StackPane fx:id="vista2" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Vue.clientsController">
-   <children>
-      <Pane minHeight="-Infinity" prefHeight="166.0" prefWidth="657.0">
-         <children>
-            <TableView fx:id="tableView" layoutX="12.0" layoutY="106.0" prefHeight="286.0" prefWidth="574.0">
-              <columns>
-                <TableColumn fx:id="UserId" prefWidth="36.0" text="Id" />
-                <TableColumn fx:id="UserLastName" prefWidth="103.0" text="Nom" />
-                <TableColumn fx:id="UserName" minWidth="0.0" prefWidth="171.0" text="Prenom" />
-                <TableColumn fx:id="Address" prefWidth="202.0" text="Adresse" />
-              </columns>
-            </TableView>
-            <ComboBox fx:id="action" layoutX="14.0" layoutY="72.0" prefWidth="150.0" promptText="Actions" />
-            <TextField fx:id="txt_field_id" layoutX="175.0" layoutY="72.0" visible="false" />
-            <TextField fx:id="txt_field_name" layoutX="175.0" layoutY="72.0" visible="false" />
-            <Button fx:id="btn_search_id" layoutX="357.0" layoutY="72.0" mnemonicParsing="false" onAction="#searchById" text="Search by ID" visible="false" />
-            <Button fx:id="btn_search_name" layoutX="357.0" layoutY="72.0" mnemonicParsing="false" onAction="#searchByName" text="Search by Name" visible="false" />
-            <Label layoutX="278.0" layoutY="14.0" text="Clients" />
-         </children>
-      </Pane>
-   </children>
+<StackPane fx:id="vista2" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Vue.clientsController">
+  <children>
+    <Pane minHeight="-Infinity" prefHeight="166.0" prefWidth="657.0">
+      <children>
+        <TableView fx:id="tableView" layoutX="12.0" layoutY="106.0" prefHeight="286.0" prefWidth="574.0">
+          <columns>
+            <TableColumn prefWidth="36.0" text="Id" fx:id="UserId" />
+            <TableColumn prefWidth="103.0" text="Nom" fx:id="UserLastName" />
+            <TableColumn minWidth="0.0" prefWidth="171.0" text="Prenom" fx:id="UserName" />
+            <TableColumn prefWidth="202.0" text="Adresse" fx:id="Address" />
+          </columns>
+        </TableView>
+        <ComboBox fx:id="action" layoutX="14.0" layoutY="72.0" prefWidth="150.0" promptText="Actions" />
+        <TextField fx:id="txt_field_id" layoutX="175.0" layoutY="72.0" visible="false" />
+        <TextField fx:id="txt_field_name" layoutX="175.0" layoutY="72.0" visible="false" />
+        <Button fx:id="btn_search_id" layoutX="346.0" layoutY="72.0" mnemonicParsing="false" onAction="#searchById" text="Search by ID" visible="false" />
+        <Button fx:id="btn_search_name" layoutX="341.0" layoutY="72.0" mnemonicParsing="false" onAction="#searchByName" text="Search by Name" visible="false" />
+        <Label layoutX="278.0" layoutY="14.0" text="Clients" />
+        <Label layoutX="449.0" layoutY="64.0" prefHeight="37.0390625" prefWidth="137.0" text="Tips : Double-cliquer sur la ligne pour la modifier" wrapText="true" />
+      </children>
+    </Pane>
+  </children>
 </StackPane>

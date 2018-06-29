@@ -115,8 +115,8 @@ public class createOrderController implements Initializable {
         List<Commande.Ligne> meslignes = parseLineList();
         System.out.println(meslignes);
         if(meslignes!=null){
-            column_amount.setCellValueFactory(new PropertyValueFactory<Commande.Ligne, String>("prix"));
-            column_price.setCellValueFactory(new PropertyValueFactory<Commande.Ligne, String>("quantite"));
+            column_amount.setCellValueFactory(new PropertyValueFactory<Commande.Ligne, String>("quantite"));
+            column_price.setCellValueFactory(new PropertyValueFactory<Commande.Ligne, String>("prix"));
             column_article.setCellValueFactory(new PropertyValueFactory<Commande.Ligne, String>("article"));
             tableView.getItems().setAll(meslignes);
         }
@@ -134,7 +134,6 @@ public class createOrderController implements Initializable {
     @FXML
     void addArticle(){
         boolean exists=false;
-        System.out.println(cbb_articles.getSelectionModel());
         Sellable monsellable = (Sellable) cbb_articles.getValue();
         Integer maquantite = Integer.parseInt(txt_quantity.getText());
         ArrayList<Commande.Ligne> lignes = commande.getArticles();
@@ -167,11 +166,11 @@ public class createOrderController implements Initializable {
         if(creer.isSelected()){
             Boutique.getInstance().ajouterCommande(commande);
         }
-        majTableView();
+        VistaNavigator.loadVista(VistaNavigator.ORDERS);
     }
     @FXML
     void cancelOrder(){
-        System.out.println("test");
+        VistaNavigator.loadVista(VistaNavigator.ORDERS);
 
     }
     @FXML

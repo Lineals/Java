@@ -60,7 +60,7 @@ public class clientsController {
         Address.setCellValueFactory(new PropertyValueFactory<Client, String>("adresse"));
 
         tableView.getItems().setAll(parseUserList());
-        action.getItems().setAll("SearchById", "SearchByName", "Add/Modify");
+        action.getItems().setAll("SearchById", "SearchByName", "Add");
         
         action.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
 			@Override
@@ -83,7 +83,7 @@ public class clientsController {
 							txt_field_name.setVisible(true); 
 							btn_search_name.setVisible(true); 
 							break;
-						case "Add/Modify": VistaNavigator.loadVista(VistaNavigator.CREATECLIENT); break;
+						case "Add": VistaNavigator.loadVista(VistaNavigator.CREATECLIENT); break;
 					}
 				} 
 			}

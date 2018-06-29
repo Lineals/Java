@@ -50,14 +50,12 @@ public class ordersController implements Initializable {
 */
 
     private List<Commande> parseOrderList(){
-        System.out.println(Boutique.getInstance().getCommandes());
         return Boutique.getInstance().getCommandes();
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         initTableView(parseOrderList());
-        action.getItems().setAll("SearchById", "SearchByClient", "Add");
-        System.out.println("test");
+        action.getItems().setAll("SearchById", "SearchByClientName", "Add");
 
         action.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override public void changed(ObservableValue<? extends String> selected, String oldAction, String newAction) {
@@ -91,11 +89,24 @@ public class ordersController implements Initializable {
     @FXML
     void searchId(){
         List<Commande> tab = new ArrayList<>();
-        tab.add(Controleur.getCommandeById(Integer.parseInt(txt_field.getText())));
+        if(txt_field.getText().trim().isEmpty()){
+            tab = (Boutique.getInstance().commandes);
+        }
+        else{
+            tab.add(Controleur.getCommandeById(Integer.parseInt(txt_field.getText())));
+        }
         initTableView(tab);
     }
     @FXML
-    void searchClient(){}
+    void searchClient(){
+        List<Commande> tab = new ArrayList<>();
+        if(!txt_field.getText().trim().isEmpty()){
+            tab.add(Controleur.getCommandeByClientName((txt_field.getText().trim())));
+        } else {
+            tab=Boutique.getInstance().commandes;
+        }
+        initTableView(tab);
+    }
 
 
 }

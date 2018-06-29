@@ -2,9 +2,11 @@ package Vue;
 import Controleur.Boutique;
 import Controleur.Controleur;
 import Metier.*;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -13,10 +15,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.Callback;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
+import java.time.LocalDateTime;
+import java.util.*;
 
 
 public class stockController implements Initializable {
@@ -26,11 +29,16 @@ public class stockController implements Initializable {
      *
      * @param event the event that triggered the handler.
      */
-    @FXML private TableView<Sellable> tableView;
-    @FXML private TableColumn<Sellable, String> nom;
-    @FXML private TableColumn<Sellable, String> marque;
-    @FXML private TableColumn<Sellable, String> prix;
-    @FXML private TableColumn<Sellable, String> ref;
+    @FXML private TableView<Map.Entry<String,String>> tableView;
+    @FXML private TableColumn<Map.Entry<String, String>, String> ref;
+    @FXML private TableColumn<Map.Entry<String, String>, String> quantite;
+
+    @FXML
+    private Button btn_add;
+    @FXML
+    private Button btn_remove;
+    @FXML
+    private Button btn_change;
     @FXML
     private TextField txt_nom;
     @FXML
@@ -62,6 +70,7 @@ public class stockController implements Initializable {
     private Sellable sellToAdd;
     private String ValStylo="Stylo";
     private String ValPapier="papier";
+    private Boolean alreadyExists=false;
     @FXML
     void retirer(){
 
@@ -77,6 +86,7 @@ public class stockController implements Initializable {
         article.setSelected(true);
         setLotVisible(false);
         cbb_article.setVisible(true);
+        cbb_article.getSelectionModel().selectFirst();
         txt_poids.setVisible(false);
         cbb_article.setItems(FXCollections.observableArrayList(ValStylo,ValPapier));
         cbb_article.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
@@ -92,7 +102,7 @@ public class stockController implements Initializable {
                 }
             }
         });
-        ArrayList<Sellable> ArticlesEtLots = new ArrayList<>(Boutique.getInstance().getStock().keySet());
+        ArrayList<Sellable> ArticlesEtLots = new ArrayList<Sellable>(Boutique.getInstance().getStock().keySet());
         /**
          * pour faire un lot il faut uniquement les articles donc on se débarasse des sellables type lot
          */
@@ -101,6 +111,7 @@ public class stockController implements Initializable {
             if(sell.getClass().getName()!="Metier.Lot"){
                 justeArticles.add(sell);
             }
+
         }
         cbb_lot.setItems(FXCollections.observableArrayList(justeArticles));
 
@@ -122,10 +133,15 @@ public class stockController implements Initializable {
 
     }
     @FXML
+    void change(){
+        loadSellable(Controleur.getArticleByReference(tableView.getSelectionModel().getSelectedItem().getKey()));
+        alreadyExists=true;
+
+    }
+    @FXML
     void ajouterElem(){
         Sellable sell = null;
         if(lot.isSelected()){
-            System.out.println("oui");
             sell = new Lot(txt_ref.getText(),Integer.parseInt(txt_nombre.getText()),Integer.parseInt(txt_pourcent.getText()),(Article)cbb_lot.getValue());
         }else {
             if(cbb_article.getValue()==ValStylo){
@@ -137,22 +153,35 @@ public class stockController implements Initializable {
                         Integer.parseInt(txt_cout.getText()),Integer.parseInt(txt_prix.getText()),Integer.parseInt(txt_poids.getText()));
             }
         }
-
         Boutique.getInstance().ajouterArticle(sell,Integer.parseInt(txt_quantite.getText()));
         displayTableView();
 
 
     }
     private void displayTableView(){
-        ArrayList<Sellable> sells ;
-        sells=new ArrayList<>(Boutique.getInstance().getStock().keySet());
-        nom.setCellValueFactory(new PropertyValueFactory<Sellable, String>("name"));
-        marque.setCellValueFactory(new PropertyValueFactory<Sellable, String>("brand"));
-        prix.setCellValueFactory(new PropertyValueFactory<Sellable, String>("price"));
-        ref.setCellValueFactory(new PropertyValueFactory<Sellable, String>("ref"));
-        if(sells!=null){
-            tableView.getItems().setAll(sells);
+        HashMap<Sellable,Integer> stockSell = Boutique.getInstance().getStock();
+        HashMap<String,String> stockRef = new HashMap<>();
+        Iterator it = stockSell.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry pair = (Map.Entry)it.next();
+            Sellable sell = (Sellable) pair.getKey();
+            stockRef.put(sell.getRef() , String.valueOf(pair.getValue()));
+//            it.remove(); // avoids a ConcurrentModificationException
         }
+        ref.setCellValueFactory(p -> {
+            // this callback returns property for just one cell, you can't use a loop here
+            // for first column we use key
+            return new SimpleStringProperty(p.getValue().getKey());
+        });
+
+        quantite.setCellValueFactory(p -> {
+            // for second column we use value
+            return new SimpleStringProperty(p.getValue().getValue());
+        });
+
+        ObservableList<Map.Entry<String, String>> items = FXCollections.observableArrayList(stockRef.entrySet());
+        tableView.setItems(items);
+        tableView.getColumns().setAll(ref, quantite);
     }
     private void setArticleVisible(boolean bool){
         article.setSelected(bool);
@@ -161,21 +190,44 @@ public class stockController implements Initializable {
         txt_nom.setVisible(bool);
         txt_poids.setVisible(bool);
         txt_prix.setVisible(bool);
-        txt_ref.setVisible(bool);
         cbb_couleur.setVisible(bool);
+        cbb_article.setVisible(bool);
     }
     private void setLotVisible(boolean bool){
         txt_nombre.setVisible(bool);
         txt_pourcent.setVisible(bool);
         cbb_lot.setVisible(bool);
     }
-    @FXML
-    void removeArticle(){
-        Sellable sell = tableView.getSelectionModel().getSelectedItem();
-        Boutique.getInstance().retirerStock(sell);
+    public void loadSellable(Sellable sell){
 
-        displayTableView();
+
+        if(sell instanceof Lot){
+            Lot monlot = (Lot) sell;
+            cbb_lot .getSelectionModel().select(monlot.article.getName());
+            txt_nombre.setText(String.valueOf(monlot.getNum()));
+            txt_pourcent.setText(String.valueOf(monlot.getTaux()));
+        }else {
+            Article monart = (Article) sell;
+            cbb_article.getSelectionModel().select(monart.getName());
+            txt_cout.setText(String.valueOf(monart.getCost()));
+            txt_ref.setText(String.valueOf(monart.getRef()));
+            txt_marque.setText(String.valueOf(monart.getBrand()));
+            txt_nom.setText(String.valueOf(monart.getName()));
+            if(sell instanceof Stylo){
+                Stylo monstylo= (Stylo) sell;
+                cbb_couleur.getSelectionModel().select(monstylo.getColor());
+
+            }
+            else if(sell instanceof Papier){
+                Papier monpapier= (Papier) sell;
+                txt_poids.setText(String.valueOf(monpapier.getPoids()));
+            }
+        }
+
+
 
     }
+
+
 
 }
