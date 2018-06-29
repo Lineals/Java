@@ -26,8 +26,8 @@ public class Main extends Application {
         stage.setTitle("Vista Viewer");
         maboutique = Boutique.getInstance();
         maboutique.feedAll();
-        maboutique.setCA(100204);
-        maboutique.setCoutFonctionnement(1004);
+        maboutique.setCA(1404);
+        maboutique.setCoutFonctionnement(108);
         stage.setScene(
             createScene(
                 loadMainPane()

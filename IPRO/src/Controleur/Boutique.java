@@ -91,10 +91,29 @@ public class Boutique {
      * @param quantite la quantite
      */
     public void ajouterArticle(Sellable article, int quantite){
-        this.stock.put(article,quantite);
-/*
-        new StockDAO(DbConnector.getDbConnector()).create(article, quantite);
-*/
+        if(Controleur.getArticleByReference(article.getRef())!=null){
+            this.stock.put(article,quantite);
+            if(article instanceof Article){
+                new ArticleDAO(DbConnector.getDbConnector()).update(article);
+            }
+            else if(article instanceof Lot){
+                new LotDAO(DbConnector.getDbConnector()).update(article);
+            }
+            new StockDAO(DbConnector.getDbConnector()).update(article, quantite);
+
+        }
+        else{
+
+
+            this.stock.put(article,quantite);
+            if(article instanceof Article){
+                new ArticleDAO(DbConnector.getDbConnector()).create(article);
+            }
+            else if(article instanceof Lot){
+                new LotDAO(DbConnector.getDbConnector()).create(article);
+            }
+            new StockDAO(DbConnector.getDbConnector()).create(article, quantite);
+        }
     }
     
     /**
@@ -219,7 +238,6 @@ public class Boutique {
     		this.stock.put(sellable, 0);
     	}
     	arrayList = new LotDAO(connection).findAll();
-    	System.out.println(this.stock);
 		for (Sellable sellable: arrayList) {
 			this.stock.put(sellable, 0);
 		}

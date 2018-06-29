@@ -91,6 +91,7 @@ public class Lot implements Sellable {
     public String getBrand() {
         return null;
     }
+
     
     public int getNum() {
     	return this.nombre;

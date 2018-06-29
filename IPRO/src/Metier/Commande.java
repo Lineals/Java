@@ -179,7 +179,7 @@ public class Commande {
         public Ligne(int qte, Sellable sale) {
         	this.quantite = qte;
         	this.article = sale;
-        	this.prix = this.quantite * this.article.getPrice();
+        	this.prix = 0;
         }
 
         /**
@@ -203,7 +203,7 @@ public class Commande {
         }
 
         public double getPrix() {
-            return this.prix;
+            return this.quantite * this.article.getPrice();
         }
         
         public Sellable getSell() {

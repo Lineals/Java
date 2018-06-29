@@ -62,6 +62,15 @@ public class Controleur {
         }
         return commande;
     }
+    public static Commande getCommandeByClientName(String name){
+    	Commande commande = null;
+        for (Commande com : Boutique.getInstance().commandes){
+            if(com.getClient().getNom().equals(name)){
+                commande = com;
+            }
+        }
+        return commande;
+    }
     public static Sellable getArticleByReference(String ref){
     	Sellable article = null;
         for(Sellable art : Boutique.getInstance().stock.keySet()){
